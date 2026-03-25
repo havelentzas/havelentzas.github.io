@@ -14,15 +14,15 @@ The price levels for rice in both economies (P<sup>V</sup> for Vietnam, P<sup>J<
 	- **Benefiting** Japanese consumers of rice, who will pay a lower price for rice.
 	- **Hurting** Japanese producers of rice, who will be unable to compete with cheaper Vietnamese prices and thus sell less rice.
 	- **Graphically**
-		- Japanese producers will **loose** area C ([[producer surplus]])
-		- Japanese consumers will **gain** area C and area D ([[consumer surplus]])
+		- Japanese producers will **loose** area C ([[Producer Surplus]])
+		- Japanese consumers will **gain** area C and area D ([[Consumer Surplus]])
 		- The Japanese economy sees the net **gain** of area D (this is the gain from trade for Japan)
 - **In Vietnam:** the price of rice will rise (increase)
 	- **Benefiting** Vietnamese producers of rice, who will sell more rice by undercutting (selling at a lower price) Japanese producers
 	- **Hurting** Vietnamese consumers, who will pay a higher price for rice
 	- **Graphically**
-		- Vietnamese producers will **gain** area A and area B ([[producer surplus]])
-		- Vietnamese consumers will **loose** area A ([[consumer surplus]])
+		- Vietnamese producers will **gain** area A and area B ([[Producer Surplus]])
+		- Vietnamese consumers will **loose** area A ([[Consumer Surplus]])
 		- The Vietnamese economy sees the net **gain** of area B (this is the gain from trade for Vietnam)
 
 > [!tldr]+ The rule

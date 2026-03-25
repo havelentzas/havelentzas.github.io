@@ -10,8 +10,8 @@ lecNum: "1"
 
 # The lines
 - **DD**: the [[Demand Diagonals|Demand Diagonal]]
-- **Unlabeled solid**: the [[Production Possibilities Frontier]] in autarky
-- **Dashed line**: the [[Production Possibilities Frontier]] with world trade
+- **Unlabeled solid**: the [[Production Possibilities Frontier]] (and by extension price line) in autarky
+- **Dashed line**: the price line with world trade
 # The points
 - **Point A** represents consumption in autarky
 	- This point is on the [[Demand Diagonals|Demand Diagonal]] because that is where the economy is in line with consumer demand

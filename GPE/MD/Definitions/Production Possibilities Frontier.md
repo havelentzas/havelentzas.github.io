@@ -2,6 +2,8 @@
 tags:
   - Economics
   - microeconomics
+  - GPE
+  - Definition
 aliases:
   - PPF
 ---
