@@ -545,6 +545,38 @@
     .priority.high { background: #fee2e2; color: #b91c1c; }
     .priority.med  { background: #fef9c3; color: #92400e; }
 
+    /* ── DAY PHOTOS ─────────────────────────────────────── */
+    .day-photo-wrap {
+      margin: 0 -1.5rem 1.2rem;
+      overflow: hidden;
+      position: relative;
+      height: 210px;
+    }
+
+    .day-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .day-card:hover .day-photo-wrap img {
+      transform: scale(1.03);
+    }
+
+    .day-photo-credit {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,0,0.42);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.58rem;
+      padding: 0.18rem 0.5rem;
+      letter-spacing: 0.04em;
+      font-family: sans-serif;
+    }
+
     /* ── MAP ─────────────────────────────────────────────── */
     .map-card {
       background: var(--white);
@@ -1374,9 +1406,31 @@
     document.getElementById('transport-total').textContent = fmt(tTotal);
     document.getElementById('accom-total').textContent = fmt(aTotal);
 
+    // inject day photos
+    Object.entries(DAY_PHOTOS).forEach(([id, photo]) => {
+      const body = document.querySelector(`#${id} .day-body`);
+      if (!body) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'day-photo-wrap';
+      wrap.innerHTML = `<img src="${photo.url}" alt="${photo.alt}" loading="lazy" /><span class="day-photo-credit">© Wikimedia Commons</span>`;
+      body.insertBefore(wrap, body.firstChild);
+    });
+
     // initialise map
     initMap();
   });
+
+  // ── DAY PHOTOS ───────────────────────────────────────────
+  const DAY_PHOTOS = {
+    day1: { url: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Vista_de_la_Playa_de_la_Concha_y_de_la_Isla_de_Santa_Clara.jpg',  alt: 'La Concha beach, San Sebastián' },
+    day2: { url: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Museo_Guggenheim%2C_Bilbao_%2831273245344%29.jpg',                  alt: 'Guggenheim Museum, Bilbao' },
+    day3: { url: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Seascape_near_Playa_de_Poo_2.jpg',                                  alt: 'Cantabrian coast near Llanes' },
+    day4: { url: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Vista_de_Las_Arenas_%28Cabrales%29_02.jpg',                         alt: 'Las Arenas, Cabrales' },
+    day5: { url: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Ruta_del_Cares_Puente.jpg',                                         alt: 'Ruta del Cares gorge, Picos de Europa' },
+    day6: { url: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Santiago_Cathedral_2021_-_west_panorama.jpg',                       alt: 'Cathedral, Santiago de Compostela' },
+    day7: { url: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Pontevedra_13_Praza_da_le%C3%B1a.jpg',                              alt: 'Praza da Leña, Pontevedra' },
+    day8: { url: 'https://upload.wikimedia.org/wikipedia/commons/4/46/Ribeira_Porto_Portugal.jpg',                                        alt: 'Ribeira waterfront, Porto' },
+  };
 
   // ── MAP ──────────────────────────────────────────────────
 
