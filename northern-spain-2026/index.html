@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northern Spain 2026 — Itinerary</title>
+  <style>
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf7f2;
+      --terracotta: #c0522a;
+      --rust:    #9b3a1a;
+      --gold:    #d4a843;
+      --olive:   #6b7c4a;
+      --slate:   #3d4a5c;
+      --muted:   #7a8496;
+      --white:   #ffffff;
+      --border:  #e2dbd0;
+      --shadow:  rgba(60,50,30,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--sand);
+      color: var(--slate);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--rust) 60%, #6b2010 100%);
+      color: var(--white);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .header-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+    header .eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 0.5rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    header .route {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .badges {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 0.25rem 0.85rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ── BUDGET CARD ─────────────────────────────────────── */
+    .budget-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      border-left: 4px solid var(--gold);
+    }
+
+    .budget-card h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .budget-item {
+      text-align: center;
+    }
+
+    .budget-item .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .budget-item .amount {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--slate);
+    }
+
+    .budget-item.total .amount { color: var(--terracotta); font-size: 1.8rem; }
+
+    .budget-divider {
+      width: 1px;
+      background: var(--border);
+      margin: 0 0.5rem;
+    }
+
+    .budget-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    /* ── ROUTE STRIP ─────────────────────────────────────── */
+    .route-strip {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      overflow-x: auto;
+    }
+
+    .route-strip h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .route-stops {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: max-content;
+    }
+
+    .stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .stop-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--terracotta);
+    }
+
+    .stop-dot.start, .stop-dot.end { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+
+    .stop-name {
+      font-size: 0.72rem;
+      font-weight: bold;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    .stop-date {
+      font-size: 0.62rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .stop-connector {
+      flex: 1;
+      min-width: 24px;
+      height: 2px;
+      background: linear-gradient(to right, var(--terracotta), var(--gold));
+      position: relative;
+      top: -8px;
+    }
+
+    /* ── DAY CARDS ───────────────────────────────────────── */
+    .days-section h2.section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .day-card {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .day-card:hover { box-shadow: 0 4px 20px rgba(60,50,30,0.15); }
+
+    .day-header {
+      display: flex;
+      align-items: stretch;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .day-number {
+      background: var(--terracotta);
+      color: var(--white);
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      text-align: center;
+    }
+
+    .day-number .num {
+      font-size: 1.4rem;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .day-number .word {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .day-info {
+      flex: 1;
+      padding: 1rem 1.2rem;
+    }
+
+    .day-info .date-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+
+    .day-info h3 {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--slate);
+      margin-bottom: 0.2rem;
+    }
+
+    .day-info .subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .day-toggle {
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      font-size: 1.2rem;
+      transition: transform 0.25s;
+    }
+
+    .day-card.open .day-toggle { transform: rotate(180deg); }
+
+    .day-body {
+      display: none;
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .day-card.open .day-body { display: block; }
+
+    /* sections inside day body */
+    .day-section {
+      margin-top: 1rem;
+    }
+
+    .day-section-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .day-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .transport-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+    }
+
+    .transport-icon { font-size: 1rem; flex-shrink: 0; }
+
+    .transport-route { flex: 1; }
+
+    .transport-route strong { display: block; color: var(--slate); }
+
+    .transport-route .t-note { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+    .transport-cost {
+      font-weight: bold;
+      color: var(--terracotta);
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .transport-cost.covered {
+      color: var(--olive);
+      text-decoration: line-through;
+      font-size: 0.78rem;
+    }
+
+    .pass-badge {
+      display: inline-block;
+      background: var(--olive);
+      color: white;
+      font-size: 0.62rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
+    .warning-badge {
+      display: inline-block;
+      background: #e8a020;
+      color: white;
+      font-size: 0.62rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+
+    .accom-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      font-size: 0.88rem;
+    }
+
+    .accom-box .accom-name { font-weight: bold; color: var(--slate); }
+    .accom-box .accom-price { color: var(--terracotta); font-weight: bold; }
+
+    .activities-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+
+    .activities-list li {
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+      color: var(--slate);
+    }
+
+    .activities-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* ── TABLES ──────────────────────────────────────────── */
+    .overview-tables {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .table-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+    }
+
+    .table-card h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.4rem 0.6rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 0.55rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--slate);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:nth-child(even) td { background: var(--cream); }
+
+    td.price { font-weight: bold; color: var(--terracotta); white-space: nowrap; }
+    td.pass { color: var(--olive); font-weight: bold; }
+
+    tfoot tr td {
+      border-top: 2px solid var(--border);
+      border-bottom: none;
+      background: var(--sand);
+      font-weight: bold;
+      font-size: 0.88rem;
+      color: var(--slate);
+      padding: 0.65rem 0.6rem;
+    }
+
+    tfoot tr td.total-label { letter-spacing: 0.04em; }
+    tfoot tr td.total-price { color: var(--terracotta); font-size: 0.95rem; }
+
+    /* ── BOOKING CHECKLIST ───────────────────────────────── */
+    .checklist-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      margin-top: 1.5rem;
+      border-left: 4px solid #e8a020;
+    }
+
+    .checklist-card h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .check-item:last-child { border-bottom: none; }
+
+    .check-item input[type="checkbox"] {
+      margin-top: 0.15rem;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--olive);
+      flex-shrink: 0;
+    }
+
+    .check-item label {
+      font-size: 0.88rem;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .check-item label.done {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .priority {
+      font-size: 0.68rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 10px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .priority.high { background: #fee2e2; color: #b91c1c; }
+    .priority.med  { background: #fef9c3; color: #92400e; }
+
+    /* ── MAP ─────────────────────────────────────────────── */
+    .map-card {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      overflow: hidden;
+    }
+
+    .map-card-header {
+      padding: 1.2rem 1.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-card-header h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .legend-line {
+      width: 20px;
+      height: 2px;
+      background: var(--terracotta);
+      border-radius: 2px;
+    }
+
+    .legend-line.flight {
+      background: transparent;
+      border-top: 2px dashed var(--slate);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      border: 1.5px solid white;
+      box-shadow: 0 0 0 1.5px var(--terracotta);
+    }
+
+    .legend-dot.transit {
+      width: 8px;
+      height: 8px;
+      background: #b07a60;
+      box-shadow: 0 0 0 1.5px #b07a60;
+    }
+
+    .legend-dot.gold {
+      background: var(--gold);
+      box-shadow: 0 0 0 1.5px var(--gold);
+    }
+
+    #trip-map {
+      height: 540px;
+      width: 100%;
+    }
+
+    /* Leaflet overrides */
+    .leaflet-popup-content-wrapper {
+      border-radius: 8px !important;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18) !important;
+      font-family: 'Georgia', serif !important;
+      padding: 0 !important;
+    }
+
+    .leaflet-popup-content {
+      margin: 0 !important;
+    }
+
+    .leaflet-popup-tip-container { margin-top: -1px; }
+
+    .map-popup {
+      padding: 0.75rem 1rem;
+      min-width: 160px;
+    }
+
+    .map-popup .pop-day {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+
+    .map-popup h4 {
+      font-size: 0.9rem;
+      color: var(--slate);
+      margin: 0 0 0.2rem;
+      font-weight: bold;
+    }
+
+    .map-popup .pop-note {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Custom marker pins */
+    .map-pin {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+      font-family: 'Georgia', serif;
+      border: 2.5px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      user-select: none;
+    }
+
+    .map-pin:hover {
+      transform: scale(1.18);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    }
+
+    .map-pin.gold { background: var(--gold); }
+
+    .map-pin.transit {
+      width: 11px;
+      height: 11px;
+      background: #b07a60;
+      border-width: 2px;
+      font-size: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .map-pin.ams {
+      background: var(--slate);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      #trip-map { height: 380px; }
+      .map-legend { display: none; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 2rem 1rem 1.8rem; }
+      .container { padding: 1.2rem 1rem 3rem; }
+      .day-number { min-width: 58px; padding: 0.8rem 0.8rem; }
+      .budget-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ HEADER -->
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">Travel Itinerary · Independent</p>
+    <h1>Northern Spain 2026</h1>
+    <p class="route">Barcelona &rarr; San Sebastián &rarr; Bilbao &rarr; Llanes &rarr; Picos de Europa &rarr; Santiago &rarr; Pontevedra &rarr; Porto</p>
+    <div class="badges">
+      <span class="badge">June 15–22, 2026</span>
+      <span class="badge">8 Days</span>
+      <span class="badge">7 Nights</span>
+      <span class="badge">Spain &amp; Portugal</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ MAIN -->
+<div class="container">
+
+  <!-- BUDGET SUMMARY -->
+  <div class="budget-card">
+    <h2>Estimated Budget</h2>
+    <div class="budget-grid">
+      <div class="budget-item">
+        <span class="label">Transport</span>
+        <span class="amount">€262</span>
+      </div>
+      <div class="budget-item">
+        <span class="label">Accommodation</span>
+        <span class="amount">€271</span>
+      </div>
+      <div class="budget-item total">
+        <span class="label">Total (excl. food)</span>
+        <span class="amount">€533</span>
+      </div>
+    </div>
+    <p class="budget-note">Food, drinks, and activities not included. Prices from budget sheet — see Spain_Trip_Budget.xlsx for full tracker.</p>
+  </div>
+
+  <!-- ROUTE STRIP -->
+  <div class="route-strip">
+    <h2>Route Overview</h2>
+    <div class="route-stops">
+      <div class="stop">
+        <div class="stop-dot start"></div>
+        <div class="stop-name">Barcelona</div>
+        <div class="stop-date">Jun 15</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Pamplona</div>
+        <div class="stop-date">transit</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">San Sebastián</div>
+        <div class="stop-date">Jun 15–16</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Bilbao</div>
+        <div class="stop-date">Jun 16–17</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Llanes</div>
+        <div class="stop-date">Jun 17–18</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Picos de Europa</div>
+        <div class="stop-date">Jun 18–20</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Santiago</div>
+        <div class="stop-date">Jun 20–21</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot"></div>
+        <div class="stop-name">Pontevedra</div>
+        <div class="stop-date">Jun 21–22</div>
+      </div>
+      <div class="stop-connector"></div>
+      <div class="stop">
+        <div class="stop-dot end"></div>
+        <div class="stop-name">Porto ✈ AMS</div>
+        <div class="stop-date">Jun 22</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-card">
+    <div class="map-card-header">
+      <h2>Route Map</h2>
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot gold"></div> Start / End</div>
+        <div class="legend-item"><div class="legend-dot"></div> Overnight stop</div>
+        <div class="legend-item"><div class="legend-dot transit"></div> Transit only</div>
+        <div class="legend-item"><div class="legend-line"></div> Ground route</div>
+      </div>
+    </div>
+    <div id="trip-map"></div>
+  </div>
+
+  <!-- DAY CARDS -->
+  <h2 class="section-title" style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Day by Day</h2>
+
+  <!-- DAY 1 -->
+  <div class="day-card open" id="day1">
+    <div class="day-header" onclick="toggleDay('day1')">
+      <div class="day-number"><span class="word">Day</span><span class="num">1</span></div>
+      <div class="day-info">
+        <div class="date-label">Monday, June 15</div>
+        <h3>Barcelona → San Sebastián</h3>
+        <div class="subtitle">via Pamplona — long travel day, beautiful arrival</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚆</span>
+          <div class="transport-route">
+            <strong>Barcelona → Pamplona — Renfe Alvia</strong>
+            <span class="t-note">Book in advance</span>
+          </div>
+          <span class="transport-cost">€46.00</span>
+        </div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Pamplona → San Sebastián — ALSA bus</strong>
+            <span class="t-note">~1h 15m · ALSA</span>
+          </div>
+          <span class="transport-cost">€9.75</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 1</div>
+        <div class="accom-box">
+          <div class="accom-name">Pensión Aida / Pensión Amaiur Ostatua</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">San Sebastián · Book now!</div>
+          <div class="accom-price">€40.80</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">San Sebastián</div>
+        <ul class="activities-list">
+          <li>Evening arrival — drop bags, explore the Parte Vieja (Old Town)</li>
+          <li>Pintxos crawl on Calle 31 de Agosto — budget €15–20</li>
+          <li>Stroll along La Concha beach at sunset</li>
+          <li>Monte Urgull viewpoint for bay panoramas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card" id="day2">
+    <div class="day-header" onclick="toggleDay('day2')">
+      <div class="day-number"><span class="word">Day</span><span class="num">2</span></div>
+      <div class="day-info">
+        <div class="date-label">Tuesday, June 16</div>
+        <h3>San Sebastián → Bilbao</h3>
+        <div class="subtitle">Basque Country coast — Guggenheim &amp; Casco Viejo</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>San Sebastián → Bilbao — ALSA bus</strong>
+            <span class="t-note">~1h 15m</span>
+          </div>
+          <span class="transport-cost">€8.16</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 2</div>
+        <div class="accom-box">
+          <div class="accom-name">Ganbara Hostel / Pensión Iturrienea Ostatua</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">Bilbao</div>
+          <div class="accom-price">€22.00</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Bilbao</div>
+        <ul class="activities-list">
+          <li>Guggenheim Museum Bilbao — book tickets online in advance</li>
+          <li>Jeff Koons' Puppy sculpture &amp; Louise Bourgeois' Maman spider outside</li>
+          <li>Casco Viejo (Old Quarter) — Las Siete Calles medieval street grid</li>
+          <li>Mercado de la Ribera — Europe's largest covered market, pintxos &amp; produce</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-card" id="day3">
+    <div class="day-header" onclick="toggleDay('day3')">
+      <div class="day-number"><span class="word">Day</span><span class="num">3</span></div>
+      <div class="day-info">
+        <div class="date-label">Wednesday, June 17</div>
+        <h3>Bilbao → Llanes</h3>
+        <div class="subtitle">Cantabrian coast — cliffs, beaches &amp; a medieval fishing town</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Bilbao → Llanes — ALSA bus</strong>
+            <span class="t-note">~3h · book 1–2 weeks ahead</span>
+          </div>
+          <span class="transport-cost">€15.77</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 3</div>
+        <div class="accom-box">
+          <div class="accom-name">Pensión La Guía / Hostal Don Paco</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">Llanes</div>
+          <div class="accom-price">€20.00</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Llanes</div>
+        <ul class="activities-list">
+          <li>Old town &amp; medieval walls — well-preserved fishing port</li>
+          <li>Cubos de la Memoria — brightly painted sea-cave cubes (coastal art installation)</li>
+          <li>Beaches: Playa de Toró, Ballota, or Barro</li>
+          <li>Coastal cliff walk toward Playa de Andrín</li>
+          <li>Day-trip option: Covadonga Sanctuary &amp; glacial lakes (~1h by bus)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-card" id="day4">
+    <div class="day-header" onclick="toggleDay('day4')">
+      <div class="day-number"><span class="word">Day</span><span class="num">4</span></div>
+      <div class="day-info">
+        <div class="date-label">Thursday, June 18</div>
+        <h3>Llanes → Arenas de Cabrales</h3>
+        <div class="subtitle">Into the Picos de Europa — base camp arrival</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Llanes → Arenas de Cabrales — ALSA bus/taxi</strong>
+            <span class="t-note">~45 min</span>
+          </div>
+          <span class="transport-cost">€6.65</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Nights 4 &amp; 5</div>
+        <div class="accom-box">
+          <div class="accom-name">Albergue Cares / Hotel Picos de Europa</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">Arenas de Cabrales · 2 nights</div>
+          <div class="accom-price">€60.00 / night</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Arenas de Cabrales</div>
+        <ul class="activities-list">
+          <li>Afternoon arrival — settle in and scout the village</li>
+          <li>Cabrales cheese tasting — the region's PDO blue cheese, aged in mountain caves</li>
+          <li>Cabrales Cheese Cave museum (Cueva del Queso)</li>
+          <li>Plan tomorrow's Ruta del Cares hike — check trail conditions</li>
+          <li>Early dinner and early night — big hike day tomorrow</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-card" id="day5">
+    <div class="day-header" onclick="toggleDay('day5')">
+      <div class="day-number"><span class="word">Day</span><span class="num">5</span></div>
+      <div class="day-info">
+        <div class="date-label">Friday, June 19</div>
+        <h3>Picos de Europa — Ruta del Cares</h3>
+        <div class="subtitle">One of Spain's most spectacular mountain hikes</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 5</div>
+        <div class="accom-box">
+          <div class="accom-name">Same as Night 4 — Arenas de Cabrales</div>
+          <div class="accom-price">€60.00</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Ruta del Cares</div>
+        <ul class="activities-list">
+          <li><strong>Trail:</strong> Poncebos → Caín through the Cares Gorge — 12 km one way</li>
+          <li>Carved into vertical limestone cliffs; the gorge drops 1,000m below the path</li>
+          <li>Allow 3–4h one way. Return by bus from Caín or walk back (~7–8h total)</li>
+          <li>Start early (8am) to beat the heat and crowds</li>
+          <li><strong>Alternative:</strong> Naranjo de Bulnes (Picu Urriellu) viewpoint hike from Sotres</li>
+          <li>Post-hike: river swim at Poncebos or cold beer in the village square</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-card" id="day6">
+    <div class="day-header" onclick="toggleDay('day6')">
+      <div class="day-number"><span class="word">Day</span><span class="num">6</span></div>
+      <div class="day-info">
+        <div class="date-label">Saturday, June 20</div>
+        <h3>AdC → Oviedo → Santiago de Compostela</h3>
+        <div class="subtitle">Long transit day — arriving into pilgrim city</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Arenas de Cabrales → Cangas de Onís</strong>
+            <span class="t-note">Local bus</span>
+          </div>
+          <span class="transport-cost">€3.05</span>
+        </div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Cangas de Onís → Oviedo</strong>
+            <span class="t-note">Bus</span>
+          </div>
+          <span class="transport-cost">€7.25</span>
+        </div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Oviedo → Santiago de Compostela — ALSA</strong>
+            <span class="t-note">~5h direct</span>
+          </div>
+          <span class="transport-cost">€37.35</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 6</div>
+        <div class="accom-box">
+          <div class="accom-name">The Last Stamp Hostel / Hostal Suso</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">Santiago de Compostela</div>
+          <div class="accom-price">€44.40</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Santiago de Compostela</div>
+        <ul class="activities-list">
+          <li>Evening arrival — Praza do Obradoiro at dusk (stunning cathedral façade)</li>
+          <li>Soak up the pilgrim atmosphere — thousands finishing the Camino daily</li>
+          <li>Walk the medieval old town (UNESCO World Heritage Site)</li>
+          <li>Calle Franco for tapas &amp; Galician wine</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-card" id="day7">
+    <div class="day-header" onclick="toggleDay('day7')">
+      <div class="day-number"><span class="word">Day</span><span class="num">7</span></div>
+      <div class="day-info">
+        <div class="date-label">Sunday, June 21</div>
+        <h3>Santiago → Pontevedra</h3>
+        <div class="subtitle">Galicia's medieval gem — car-free old town &amp; Rías Baixas</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚆</span>
+          <div class="transport-route">
+            <strong>Santiago → Pontevedra — train</strong>
+            <span class="t-note">~1h · runs every ~hour</span>
+          </div>
+          <span class="transport-cost">€7.60</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Accommodation — Night 7</div>
+        <div class="accom-box">
+          <div class="accom-name">Hostal Rías Bajas / budget posada, old centre</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin:0.2rem 0;">Pontevedra</div>
+          <div class="accom-price">€23.64</div>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Pontevedra</div>
+        <ul class="activities-list">
+          <li>One of Galicia's best-preserved medieval old towns — almost entirely car-free</li>
+          <li>Praza da Ferrería &amp; Praza da Verdura — the living heart of the city</li>
+          <li>Basilica de Santa María a Maior — late Gothic façade</li>
+          <li>Pulpo á feira (octopus), empanada gallega, Albariño white wine</li>
+          <li>Morning option: Rías Baixas coastline or Combarro fishing village (~15 min)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day-card" id="day8">
+    <div class="day-header" onclick="toggleDay('day8')">
+      <div class="day-number" style="background:var(--gold);"><span class="word">Day</span><span class="num">8</span></div>
+      <div class="day-info">
+        <div class="date-label">Monday, June 22</div>
+        <h3>Pontevedra → Porto ✈ Amsterdam</h3>
+        <div class="subtitle">Final leg — border crossing &amp; flight home</div>
+      </div>
+      <div class="day-toggle">&#8964;</div>
+    </div>
+    <div class="day-body">
+      <div class="day-section">
+        <div class="day-section-title">Transport</div>
+        <div class="transport-item">
+          <span class="transport-icon">🚆</span>
+          <div class="transport-route">
+            <strong>Pontevedra → Vigo — train</strong>
+            <span class="t-note">~15–20 min · runs every ~hour</span>
+          </div>
+          <span class="transport-cost">€3.80</span>
+        </div>
+        <div class="transport-item">
+          <span class="transport-icon">🚌</span>
+          <div class="transport-route">
+            <strong>Vigo → Porto Campanhã — Renfe/CP Celta <span class="warning-badge">⚠ REPLACEMENT BUS</span></strong>
+            <span class="t-note">Book ASAP</span>
+          </div>
+          <span class="transport-cost">€16.75</span>
+        </div>
+        <div class="transport-item">
+          <span class="transport-icon">✈</span>
+          <div class="transport-route">
+            <strong>Porto OPO → Amsterdam AMS — flight</strong>
+            <span class="t-note">Allow plenty of time for Porto → airport transfer</span>
+          </div>
+          <span class="transport-cost">€100.00</span>
+        </div>
+      </div>
+      <div class="day-section">
+        <div class="day-section-title">Porto (if time allows)</div>
+        <ul class="activities-list">
+          <li>Ribeira waterfront along the Douro River</li>
+          <li>Livraria Lello — the famous fin-de-siècle bookshop</li>
+          <li>Francesinha sandwich — Porto's iconic meat-heavy dish</li>
+          <li>Tram 28 equivalent: Tram E (historic electric tram along the waterfront)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW TABLES -->
+  <div class="overview-tables">
+    <div class="table-card">
+      <h2>Transport Overview</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Route</th>
+            <th>Mode</th>
+            <th>Cost</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Jun 15</td><td>Barcelona → Pamplona</td><td>Train</td><td class="price" data-cost="46.00">€46.00</td><td>Book in advance</td></tr>
+          <tr><td>Jun 15</td><td>Pamplona → San Sebastián</td><td>Bus</td><td class="price" data-cost="9.75">€9.75</td><td>ALSA</td></tr>
+          <tr><td>Jun 16</td><td>San Sebastián → Bilbao</td><td>Bus</td><td class="price" data-cost="8.16">€8.16</td><td>ALSA ~1h 15m</td></tr>
+          <tr><td>Jun 17</td><td>Bilbao → Llanes</td><td>Bus</td><td class="price" data-cost="15.77">€15.77</td><td>Book 1–2 wks ahead</td></tr>
+          <tr><td>Jun 18</td><td>Llanes → Arenas de Cabrales</td><td>Bus/taxi</td><td class="price" data-cost="6.65">€6.65</td><td>~45 min</td></tr>
+          <tr><td>Jun 20</td><td>AdC → Cangas de Onís</td><td>Bus</td><td class="price" data-cost="3.05">€3.05</td><td></td></tr>
+          <tr><td>Jun 20</td><td>Cangas de Onís → Oviedo</td><td>Bus</td><td class="price" data-cost="7.25">€7.25</td><td></td></tr>
+          <tr><td>Jun 20</td><td>Oviedo → Santiago</td><td>Bus</td><td class="price" data-cost="37.35">€37.35</td><td>ALSA ~5h direct</td></tr>
+          <tr><td>Jun 21</td><td>Santiago → Pontevedra</td><td>Train</td><td class="price" data-cost="7.60">€7.60</td><td>Every ~hour</td></tr>
+          <tr><td>Jun 22</td><td>Pontevedra → Vigo</td><td>Train</td><td class="price" data-cost="3.80">€3.80</td><td>Every ~hour</td></tr>
+          <tr><td>Jun 22</td><td>Vigo → Porto Campanhã</td><td>Bus (repl.)</td><td class="price" data-cost="16.75">€16.75</td><td>⚠ Book ASAP</td></tr>
+          <tr><td>Jun 22</td><td>Porto OPO → Amsterdam AMS</td><td>Flight</td><td class="price" data-cost="100.00">€100.00</td><td></td></tr>
+        </tbody>
+        <tfoot id="transport-foot">
+          <tr>
+            <td colspan="3" class="total-label">Total — Transport</td>
+            <td class="total-price" id="transport-total"></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="table-card">
+      <h2>Accommodation Overview</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Night</th>
+            <th>Dates</th>
+            <th>Location</th>
+            <th>Option</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Jun 15–16</td><td>San Sebastián</td><td>Pensión Aida / Amaiur Ostatua</td><td class="price" data-cost="40.80">€40.80</td></tr>
+          <tr><td>2</td><td>Jun 16–17</td><td>Bilbao</td><td>Ganbara Hostel / Pensión Iturrienea</td><td class="price" data-cost="22.00">€22.00</td></tr>
+          <tr><td>3</td><td>Jun 17–18</td><td>Llanes</td><td>Pensión La Guía / Hostal Don Paco</td><td class="price" data-cost="20.00">€20.00</td></tr>
+          <tr><td>4</td><td>Jun 18–19</td><td>Arenas de Cabrales</td><td>Albergue Cares / Hotel Picos de Europa</td><td class="price" data-cost="60.00">€60.00</td></tr>
+          <tr><td>5</td><td>Jun 19–20</td><td>Arenas de Cabrales</td><td>Same (pre-hike night)</td><td class="price" data-cost="60.00">€60.00</td></tr>
+          <tr><td>6</td><td>Jun 20–21</td><td>Santiago de Compostela</td><td>The Last Stamp Hostel / Hostal Suso</td><td class="price" data-cost="44.40">€44.40</td></tr>
+          <tr><td>7</td><td>Jun 21–22</td><td>Pontevedra</td><td>Hostal Rías Bajas / budget posada</td><td class="price" data-cost="23.64">€23.64</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="total-label">Total — Accommodation</td>
+            <td class="total-price" id="accom-total"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- BOOKING CHECKLIST -->
+  <div class="checklist-card">
+    <h2>⚠ Booking Priorities</h2>
+
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="strikeLabel(this)" />
+      <label for="c1">BCN → Pamplona Renfe Alvia — book via Renfe</label>
+      <span class="priority high">Urgent</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="strikeLabel(this)" />
+      <label for="c2">Vigo → Porto Celta — running as replacement bus, book ASAP</label>
+      <span class="priority high">Urgent</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="strikeLabel(this)" />
+      <label for="c3">San Sebastián Night 1 — Pensión Aida / Amaiur Ostatua</label>
+      <span class="priority high">Urgent</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="strikeLabel(this)" />
+      <label for="c4">Arenas de Cabrales Nights 4 &amp; 5 — Albergue Cares / Hotel Picos</label>
+      <span class="priority med">Soon</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="strikeLabel(this)" />
+      <label for="c5">Santiago Night 6 — The Last Stamp Hostel / Hostal Suso</label>
+      <span class="priority med">Soon</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="strikeLabel(this)" />
+      <label for="c6">Porto → Amsterdam flight — confirm booking ref</label>
+      <span class="priority med">Soon</span>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c7" onchange="strikeLabel(this)" />
+      <label for="c7">Bilbao → Llanes ALSA bus — book 1–2 weeks before Jun 17</label>
+      <span class="priority med">Soon</span>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  Northern Spain 2026 &nbsp;·&nbsp; Barcelona → Porto &nbsp;·&nbsp; June 15–22
+</footer>
+
+<script>
+  function toggleDay(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  function strikeLabel(checkbox) {
+    const label = checkbox.parentElement.querySelector('label');
+    label.classList.toggle('done', checkbox.checked);
+    // persist to localStorage
+    const key = 'check_' + checkbox.id;
+    localStorage.setItem(key, checkbox.checked ? '1' : '0');
+  }
+
+  function sumTable(scope) {
+    let total = 0;
+    scope.querySelectorAll('tbody td[data-cost]').forEach(td => {
+      total += parseFloat(td.dataset.cost);
+    });
+    return total;
+  }
+
+  function fmt(n) {
+    return '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  // restore checkbox state on load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+      const key = 'check_' + cb.id;
+      if (localStorage.getItem(key) === '1') {
+        cb.checked = true;
+        cb.parentElement.querySelector('label').classList.add('done');
+      }
+    });
+
+    // compute table totals
+    const transportTable = document.querySelector('#transport-foot').closest('table');
+    const accomTable = document.querySelector('#accom-total').closest('table');
+    const tTotal = sumTable(transportTable);
+    const aTotal = sumTable(accomTable);
+    document.getElementById('transport-total').textContent = fmt(tTotal);
+    document.getElementById('accom-total').textContent = fmt(aTotal);
+
+    // initialise map
+    initMap();
+  });
+
+  // ── MAP ──────────────────────────────────────────────────
+
+  const STOPS = [
+    { name: 'Barcelona',             lat: 41.3851,  lng:  2.1734,  day: 'Day 1',    date: 'Jun 15',     note: 'Departure city',                       type: 'start',   label: '1' },
+    { name: 'Pamplona',              lat: 42.8169,  lng: -1.6432,  day: 'Transit',  date: 'Jun 15',     note: 'Train transit — Renfe Alvia',           type: 'transit', label: ''  },
+    { name: 'San Sebastián',         lat: 43.3183,  lng: -1.9812,  day: 'Day 1–2',  date: 'Jun 15–16',  note: 'Night 1 · Pintxos, La Concha beach',   type: 'stop',    label: '2' },
+    { name: 'Bilbao',                lat: 43.2630,  lng: -2.9350,  day: 'Day 2–3',  date: 'Jun 16–17',  note: 'Night 2 · Guggenheim, Casco Viejo',    type: 'stop',    label: '3' },
+    { name: 'Llanes',                lat: 43.4205,  lng: -4.7535,  day: 'Day 3–4',  date: 'Jun 17–18',  note: 'Night 3 · Cantabrian coast',           type: 'stop',    label: '4' },
+    { name: 'Las Arenas',            lat: 43.2558,  lng: -4.8600,  day: 'Days 4–6', date: 'Jun 18–20',  note: 'Nights 4–5 · Picos de Europa base camp', type: 'stop',  label: '5' },
+    { name: 'Cangas de Onís',        lat: 43.3511,  lng: -5.1243,  day: 'Transit',  date: 'Jun 20',     note: 'Bus transit',                          type: 'transit', label: ''  },
+    { name: 'Oviedo',                lat: 43.3614,  lng: -5.8494,  day: 'Transit',  date: 'Jun 20',     note: 'Bus transit — ALSA',                   type: 'transit', label: ''  },
+    { name: 'Santiago de Compostela',lat: 42.8782,  lng: -8.5448,  day: 'Day 6–7',  date: 'Jun 20–21',  note: 'Night 6 · Cathedral, Camino de Santiago', type: 'stop', label: '6' },
+    { name: 'Pontevedra',            lat: 42.4336,  lng: -8.6480,  day: 'Day 7–8',  date: 'Jun 21–22',  note: 'Night 7 · Medieval old town, Rías Baixas', type: 'stop', label: '7' },
+    { name: 'Vigo',                  lat: 42.2406,  lng: -8.7207,  day: 'Transit',  date: 'Jun 22',     note: 'Bus transit → Porto',                  type: 'transit', label: ''  },
+    { name: 'Porto',                 lat: 41.1579,  lng: -8.6291,  day: 'Day 8',    date: 'Jun 22',     note: 'End point — ✈ flight to Amsterdam',    type: 'end',     label: '8' },
+  ];
+
+
+  function popup(s) {
+    return `<div class="map-popup">
+      <div class="pop-day">${s.day} &middot; ${s.date}</div>
+      <h4>${s.name}</h4>
+      <p class="pop-note">${s.note}</p>
+    </div>`;
+  }
+
+  function initMap() {
+    const map = L.map('trip-map', {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true,
+    });
+
+    // Enable scroll zoom once the user focuses the map
+    map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
+    map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+
+    // CartoDB Voyager — free, no API key, beautiful
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // ── Ground route polyline ───────────────────────────────
+    const groundCoords = STOPS.map(s => [s.lat, s.lng]);
+    L.polyline(groundCoords, {
+      color: '#c0522a',
+      weight: 3.5,
+      opacity: 0.88,
+      lineJoin: 'round',
+      lineCap: 'round',
+    }).addTo(map);
+
+    // ── Train segments (slightly thicker) ──────────────────
+    // BCN → Pamplona and SSn → Porto legs that use train
+    const trainSegments = [
+      [[41.3851, 2.1734], [42.8169, -1.6432]],  // Barcelona → Pamplona
+      [[42.4336, -8.6480], [42.2406, -8.7207]], // Pontevedra → Vigo
+    ];
+    trainSegments.forEach(seg => {
+      L.polyline(seg, { color: '#9b3a1a', weight: 5, opacity: 0.55, lineCap: 'round' }).addTo(map);
+    });
+
+    // ── Stop markers ───────────────────────────────────────
+    STOPS.forEach(s => {
+      const isTransit = s.type === 'transit';
+      const isGold    = s.type === 'start' || s.type === 'end';
+      const cls = isTransit ? 'transit' : (isGold ? 'gold' : '');
+      const size = isTransit ? [11, 11] : [30, 30];
+      const anchor = isTransit ? [5, 5] : [15, 15];
+
+      const icon = L.divIcon({
+        html: `<div class="map-pin ${cls}">${s.label}</div>`,
+        className: '',
+        iconSize: size,
+        iconAnchor: anchor,
+        popupAnchor: [0, isTransit ? -8 : -18],
+      });
+
+      L.marker([s.lat, s.lng], { icon })
+        .addTo(map)
+        .bindPopup(popup(s));
+    });
+
+    // ── Fit bounds: full ground route ─────────────────────
+    map.fitBounds(STOPS.map(s => [s.lat, s.lng]), { padding: [38, 38] });
+  }
+</script>
+</body>
+</html>
