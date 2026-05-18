@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harry Velentzas</title>
-  <meta name="description" content="Harry Velentzas — International Studies student at Leiden University.">
+  <title>Harrison Velentzas</title>
+  <meta name="description" content="Harrison Velentzas — International Studies honors student at Leiden University, event coordinator and media specialist.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
@@ -32,32 +32,42 @@
       min-height: 100vh;
     }
 
-    .wrap {
-      max-width: 620px;
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      max-width: 1020px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
+      min-height: 100vh;
     }
 
-    /* ── Header ── */
-    header {
-      padding: 5.5rem 0 2.5rem;
+    /* ── Sidebar ── */
+    .sidebar {
+      padding: 5rem 2.5rem 5rem 0;
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
       animation: rise 0.5s ease both;
     }
 
     .name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 7vw, 4rem);
+      font-size: 1.55rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 0.6rem;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
     }
 
     .tagline {
-      font-size: 0.88rem;
+      font-size: 0.78rem;
       font-weight: 400;
       color: var(--muted);
-      letter-spacing: 0.01em;
+      line-height: 1.5;
+      margin-bottom: 1.6rem;
     }
 
     .tagline a {
@@ -69,38 +79,85 @@
     }
     .tagline a:hover { color: var(--accent); }
 
-    /* ── About ── */
-    .about {
-      padding: 0 0 3rem;
-      animation: rise 0.5s 0.07s ease both;
-    }
-
-    .about p {
-      font-size: 1rem;
+    .bio {
+      font-size: 0.85rem;
       font-weight: 300;
-      max-width: 54ch;
       color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 2rem;
     }
 
-    .about p + p { margin-top: 0.75rem; }
+    .bio p + p { margin-top: 0.7rem; }
 
-    /* ── Sections ── */
-    section {
-      padding: 2.2rem 0;
+    /* Social links */
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
     }
 
-    section:nth-of-type(1) { animation: rise 0.5s 0.14s ease both; }
-    section:nth-of-type(2) { animation: rise 0.5s 0.21s ease both; }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s;
+    }
+
+    .social-link:hover { color: var(--accent); }
+
+    .social-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      min-width: 72px;
+    }
+
+    .social-link:hover .social-label { color: var(--accent); }
+
+    .social-arrow {
+      font-size: 0.78rem;
+      transition: transform 0.15s;
+    }
+
+    .social-link:hover .social-arrow { transform: translateX(3px); }
+
+    /* ── Main content ── */
+    .content {
+      padding: 5rem 0 5rem 3.5rem;
+      animation: rise 0.5s 0.08s ease both;
+    }
+
+    section {
+      padding-bottom: 2.4rem;
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
     .section-label {
       font-family: 'Syne', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.2rem;
     }
 
     /* ── Note cards ── */
@@ -129,21 +186,21 @@
 
     .card-title {
       font-family: 'Syne', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       margin-bottom: 0.15rem;
       letter-spacing: -0.01em;
     }
 
     .card-desc {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 300;
       color: var(--muted);
       line-height: 1.45;
     }
 
     .card-arrow {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--muted);
       flex-shrink: 0;
       transition: transform 0.18s ease, color 0.18s ease;
@@ -154,130 +211,88 @@
       color: var(--accent);
     }
 
-    /* ── Elsewhere list ── */
-    .list-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.15s;
-    }
-
-    .list-item:first-child { border-top: 1px solid var(--border); }
-    .list-item:hover { color: var(--accent); }
-
-    .list-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .list-desc {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--muted);
-      flex: 1;
-    }
-
-    .list-arrow {
-      font-size: 0.8rem;
-      color: var(--border);
-      transition: transform 0.15s, color 0.15s;
-    }
-
-    .list-item:hover .list-arrow {
-      transform: translateX(3px);
-      color: var(--accent);
-    }
-
-    /* ── Footer ── */
-    footer {
-      padding: 2.2rem 0 5rem;
-      border-top: 1px solid var(--border);
-      animation: rise 0.5s 0.28s ease both;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem 1.8rem;
-    }
-
-    .footer-link {
-      font-size: 0.8rem;
-      font-weight: 300;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .footer-link:hover { color: var(--accent); }
-
     /* ── Animation ── */
     @keyframes rise {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 480px) {
-      html { font-size: 16px; }
-      header { padding: 3.5rem 0 2rem; }
-      .list-desc { display: none; }
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 3rem 0 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .content {
+        padding: 2.5rem 0 4rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="layout">
 
-    <header>
+    <aside class="sidebar">
       <h1 class="name">Harrison Velentzas</h1>
-      <p class="tagline">International Studies · <a href="https://www.universiteitleiden.nl/en" target="_blank" rel="noopener">Leiden University</a> · Honors</p>
-    </header>
+      <p class="tagline">
+        International Studies · Honors<br>
+        <a href="https://www.universiteitleiden.nl/en" target="_blank" rel="noopener">Leiden University</a>
+      </p>
 
-    <div class="about">
-      <p>I'm an International Studies honors student at Leiden University. Alongside my degree I work in event coordination and media production — I founded the Leiden Student Creative Agency, serve as Deputy Secretary-General of the European Horizons Youth Security Conference, and have worked with organisations including the NBA's European Live Production team.</p>
-      <p>This site hosts course notes from my degree, written to present the material as clearly as possible for other students.</p>
-    </div>
-
-    <section>
-      <p class="section-label">Notes</p>
-      <div class="cards">
-        <a href="/webnotes/pos/philosophy-of-science-web-notes.html" class="card">
-          <div class="card-body">
-            <div class="card-title">Philosophy of Science</div>
-            <div class="card-desc">Scientific methodology, epistemology, and the logic of inquiry</div>
-          </div>
-          <span class="card-arrow">→</span>
-        </a>
-        <a href="/webnotes/gpe/" class="card">
-          <div class="card-body">
-            <div class="card-title">Global Political Economy</div>
-            <div class="card-desc">Trade, institutions, and the political economy of globalisation</div>
-          </div>
-          <span class="card-arrow">→</span>
-        </a>
+      <div class="bio">
+        <p>I'm an International Studies honors student at Leiden University. Alongside my degree I work in event coordination and media production — I founded the Leiden Student Creative Agency, serve as Deputy Secretary-General of the European Horizons Youth Security Conference, and have worked with organisations including the NBA's European Live Production team.</p>
       </div>
-    </section>
 
-    <section>
-      <p class="section-label">Elsewhere</p>
-      <a href="https://github.com/havelentzas" class="list-item" target="_blank" rel="noopener">
-        <span class="list-name">GitHub</span>
-        <span class="list-desc">@havelentzas</span>
-        <span class="list-arrow">→</span>
-      </a>
-    </section>
+      <nav class="social">
+        <a href="https://www.linkedin.com/in/harrisonvelentzas/" class="social-link" target="_blank" rel="noopener">
+          <span class="social-label">LinkedIn</span>
+          <span class="social-arrow">→</span>
+        </a>
+        <a href="https://github.com/havelentzas" class="social-link" target="_blank" rel="noopener">
+          <span class="social-label">GitHub</span>
+          <span class="social-arrow">→</span>
+        </a>
+        <a href="https://instagram.com/harry_v06" class="social-link" target="_blank" rel="noopener">
+          <span class="social-label">Instagram</span>
+          <span class="social-arrow">→</span>
+        </a>
+        <a href="mailto:harrison.velentzas@gmail.com" class="social-link">
+          <span class="social-label">Email</span>
+          <span class="social-arrow">→</span>
+        </a>
+      </nav>
+    </aside>
 
-    <footer>
-      <div class="footer-links">
-        <a href="mailto:harrison.velentzas@gmail.com" class="footer-link">harrison.velentzas@gmail.com</a>
-        <a href="https://instagram.com/harry_v06" class="footer-link" target="_blank" rel="noopener">@harry_v06</a>
-      </div>
-    </footer>
+    <main class="content">
+      <section>
+        <p class="section-label">Notes</p>
+        <div class="cards">
+          <a href="/webnotes/pos/philosophy-of-science-web-notes.html" class="card">
+            <div class="card-body">
+              <div class="card-title">Philosophy of Science</div>
+              <div class="card-desc">Scientific methodology, epistemology, and the logic of inquiry</div>
+            </div>
+            <span class="card-arrow">→</span>
+          </a>
+          <a href="/webnotes/gpe/" class="card">
+            <div class="card-body">
+              <div class="card-title">Global Political Economy</div>
+              <div class="card-desc">Trade, institutions, and the political economy of globalisation</div>
+            </div>
+            <span class="card-arrow">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
 
   </div>
 </body>
