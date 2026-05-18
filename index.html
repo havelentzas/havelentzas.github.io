@@ -7,66 +7,57 @@
   <meta name="description" content="Harry Velentzas — International Studies student at Leiden University.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:          #F7F2E9;
-      --bg-card:     #EDE5D4;
-      --bg-hover:    #E5DCC9;
-      --text:        #1A1610;
-      --muted:       #8A7A68;
-      --accent:      #6B4226;
-      --accent-soft: #9B6B44;
-      --border:      #CEC3AF;
+      --bg:        #F5F5F3;
+      --card:      #EBEBЕ8;
+      --card-hover:#E1E1DD;
+      --text:      #0F0F0E;
+      --muted:     #888884;
+      --accent:    #C05A28;
+      --border:    #DADAD5;
     }
 
-    html { font-size: 18px; }
+    html { font-size: 17px; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'EB Garamond', Georgia, serif;
-      line-height: 1.75;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
       min-height: 100vh;
     }
 
-    /* Subtle paper grain */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-    }
-
     .wrap {
-      max-width: 640px;
+      max-width: 620px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
     /* ── Header ── */
     header {
-      padding: 5rem 0 2.8rem;
-      animation: rise 0.55s ease both;
+      padding: 5.5rem 0 2.5rem;
+      animation: rise 0.5s ease both;
     }
 
     .name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.2rem);
-      font-weight: 400;
-      letter-spacing: -0.015em;
-      line-height: 1.08;
-      margin-bottom: 0.45rem;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.6rem;
     }
 
     .tagline {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
+      font-weight: 400;
       color: var(--muted);
-      font-style: italic;
+      letter-spacing: 0.01em;
     }
 
     .tagline a {
@@ -80,104 +71,95 @@
 
     /* ── About ── */
     .about {
-      padding: 0 0 2.8rem;
-      animation: rise 0.55s 0.08s ease both;
+      padding: 0 0 3rem;
+      animation: rise 0.5s 0.07s ease both;
     }
 
     .about p {
-      font-size: 1.05rem;
-      max-width: 56ch;
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 54ch;
       color: var(--text);
     }
 
-    .about p + p { margin-top: 0.9rem; }
+    .about p + p { margin-top: 0.75rem; }
 
     /* ── Sections ── */
     section {
-      padding: 2.4rem 0;
+      padding: 2.2rem 0;
       border-top: 1px solid var(--border);
     }
 
-    section:nth-of-type(1) { animation: rise 0.55s 0.16s ease both; }
-    section:nth-of-type(2) { animation: rise 0.55s 0.24s ease both; }
+    section:nth-of-type(1) { animation: rise 0.5s 0.14s ease both; }
+    section:nth-of-type(2) { animation: rise 0.5s 0.21s ease both; }
 
     .section-label {
-      font-size: 0.72rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.4rem;
     }
 
     /* ── Note cards ── */
-    .cards { display: grid; gap: 1rem; }
+    .cards { display: grid; gap: 0.75rem; }
 
     .card {
-      display: block;
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1.4rem 3.2rem 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--card);
+      padding: 1.2rem 1.4rem;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 3px;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.2s ease;
+      border: 1px solid transparent;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
     }
 
     .card:hover {
-      background: var(--bg-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(26, 22, 16, 0.07);
+      background: var(--card-hover);
+      border-color: var(--border);
+      transform: translateX(3px);
     }
 
-    .card:hover::before { opacity: 1; }
+    .card-body { flex: 1; min-width: 0; }
 
     .card-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      margin-bottom: 0.2rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+      letter-spacing: -0.01em;
     }
 
     .card-desc {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
+      font-weight: 300;
       color: var(--muted);
-      font-style: italic;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .card-arrow {
-      position: absolute;
-      right: 1.4rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent-soft);
-      font-size: 1rem;
-      opacity: 0;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-size: 0.9rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.18s ease, color 0.18s ease;
     }
 
     .card:hover .card-arrow {
-      opacity: 1;
-      transform: translateY(-50%) translateX(2px);
+      transform: translateX(3px);
+      color: var(--accent);
     }
 
     /* ── Elsewhere list ── */
     .list-item {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 1rem;
-      padding: 0.75rem 0;
+      padding: 0.8rem 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
@@ -188,16 +170,16 @@
     .list-item:hover { color: var(--accent); }
 
     .list-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1rem;
-      font-weight: 400;
-      white-space: nowrap;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
     }
 
     .list-desc {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 300;
       color: var(--muted);
-      font-style: italic;
       flex: 1;
     }
 
@@ -209,25 +191,25 @@
 
     .list-item:hover .list-arrow {
       transform: translateX(3px);
-      color: var(--accent-soft);
+      color: var(--accent);
     }
 
     /* ── Footer ── */
     footer {
-      padding: 2.4rem 0 4.5rem;
+      padding: 2.2rem 0 5rem;
       border-top: 1px solid var(--border);
-      animation: rise 0.55s 0.32s ease both;
+      animation: rise 0.5s 0.28s ease both;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3rem 2rem;
+      gap: 0.25rem 1.8rem;
     }
 
     .footer-link {
-      font-size: 0.85rem;
-      font-style: italic;
+      font-size: 0.8rem;
+      font-weight: 300;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.15s;
@@ -237,7 +219,7 @@
 
     /* ── Animation ── */
     @keyframes rise {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -265,13 +247,17 @@
       <p class="section-label">Notes</p>
       <div class="cards">
         <a href="/webnotes/pos/philosophy-of-science-web-notes.html" class="card">
-          <div class="card-title">Philosophy of Science</div>
-          <div class="card-desc">Scientific methodology, epistemology, and the logic of inquiry</div>
+          <div class="card-body">
+            <div class="card-title">Philosophy of Science</div>
+            <div class="card-desc">Scientific methodology, epistemology, and the logic of inquiry</div>
+          </div>
           <span class="card-arrow">→</span>
         </a>
         <a href="/webnotes/gpe/" class="card">
-          <div class="card-title">Global Political Economy</div>
-          <div class="card-desc">Trade, institutions, and the political economy of globalisation</div>
+          <div class="card-body">
+            <div class="card-title">Global Political Economy</div>
+            <div class="card-desc">Trade, institutions, and the political economy of globalisation</div>
+          </div>
           <span class="card-arrow">→</span>
         </a>
       </div>
@@ -279,11 +265,6 @@
 
     <section>
       <p class="section-label">Elsewhere</p>
-      <a href="/northern-spain-2026/" class="list-item">
-        <span class="list-name">Northern Spain, 2026</span>
-        <span class="list-desc">Ten days through the north</span>
-        <span class="list-arrow">→</span>
-      </a>
       <a href="https://github.com/havelentzas" class="list-item" target="_blank" rel="noopener">
         <span class="list-name">GitHub</span>
         <span class="list-desc">@havelentzas</span>
