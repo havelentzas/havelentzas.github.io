@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry Velentzas</title>
+  <meta name="description" content="Harry Velentzas — International Studies student at Leiden University.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F7F2E9;
+      --bg-card:     #EDE5D4;
+      --bg-hover:    #E5DCC9;
+      --text:        #1A1610;
+      --muted:       #8A7A68;
+      --accent:      #6B4226;
+      --accent-soft: #9B6B44;
+      --border:      #CEC3AF;
+    }
+
+    html { font-size: 18px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* Subtle paper grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 5rem 0 2.8rem;
+      animation: rise 0.55s ease both;
+    }
+
+    .name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.08;
+      margin-bottom: 0.45rem;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .tagline a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border);
+      transition: color 0.15s;
+    }
+    .tagline a:hover { color: var(--accent); }
+
+    /* ── About ── */
+    .about {
+      padding: 0 0 2.8rem;
+      animation: rise 0.55s 0.08s ease both;
+    }
+
+    .about p {
+      font-size: 1.05rem;
+      max-width: 56ch;
+      color: var(--text);
+    }
+
+    .about p + p { margin-top: 0.9rem; }
+
+    /* ── Sections ── */
+    section {
+      padding: 2.4rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section:nth-of-type(1) { animation: rise 0.55s 0.16s ease both; }
+    section:nth-of-type(2) { animation: rise 0.55s 0.24s ease both; }
+
+    .section-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── Note cards ── */
+    .cards { display: grid; gap: 1rem; }
+
+    .card {
+      display: block;
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.4rem 3.2rem 1.4rem 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26, 22, 16, 0.07);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-soft);
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: translateY(-50%) translateX(2px);
+    }
+
+    /* ── Elsewhere list ── */
+    .list-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+    }
+
+    .list-item:first-child { border-top: 1px solid var(--border); }
+    .list-item:hover { color: var(--accent); }
+
+    .list-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .list-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+      flex: 1;
+    }
+
+    .list-arrow {
+      font-size: 0.8rem;
+      color: var(--border);
+      transition: transform 0.15s, color 0.15s;
+    }
+
+    .list-item:hover .list-arrow {
+      transform: translateX(3px);
+      color: var(--accent-soft);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.4rem 0 4.5rem;
+      border-top: 1px solid var(--border);
+      animation: rise 0.55s 0.32s ease both;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 2rem;
+    }
+
+    .footer-link {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-link:hover { color: var(--accent); }
+
+    /* ── Animation ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      html { font-size: 16px; }
+      header { padding: 3.5rem 0 2rem; }
+      .list-desc { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <h1 class="name">Harry Velentzas</h1>
+      <p class="tagline">International Studies — <a href="https://www.universiteitleiden.nl/en" target="_blank" rel="noopener">Leiden University</a></p>
+    </header>
+
+    <div class="about">
+      <p>I'm a student based in Leiden with an interest in international relations, political economy, and the philosophy of social inquiry.</p>
+      <p>This site collects course notes and a few other things. The notes are written for myself and shared in case they're useful to anyone else.</p>
+    </div>
+
+    <section>
+      <p class="section-label">Notes</p>
+      <div class="cards">
+        <a href="/webnotes/pos/philosophy-of-science-web-notes.html" class="card">
+          <div class="card-title">Philosophy of Science</div>
+          <div class="card-desc">Scientific methodology, epistemology, and the logic of inquiry</div>
+          <span class="card-arrow">→</span>
+        </a>
+        <a href="/webnotes/gpe/" class="card">
+          <div class="card-title">Global Political Economy</div>
+          <div class="card-desc">Trade, institutions, and the political economy of globalisation</div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">Elsewhere</p>
+      <a href="/northern-spain-2026/" class="list-item">
+        <span class="list-name">Northern Spain, 2026</span>
+        <span class="list-desc">Ten days through the north</span>
+        <span class="list-arrow">→</span>
+      </a>
+      <a href="https://github.com/havelentzas" class="list-item" target="_blank" rel="noopener">
+        <span class="list-name">GitHub</span>
+        <span class="list-desc">@havelentzas</span>
+        <span class="list-arrow">→</span>
+      </a>
+    </section>
+
+    <footer>
+      <div class="footer-links">
+        <a href="mailto:harrison.velentzas@gmail.com" class="footer-link">harrison.velentzas@gmail.com</a>
+        <a href="https://instagram.com/harry_v06" class="footer-link" target="_blank" rel="noopener">@harry_v06</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
