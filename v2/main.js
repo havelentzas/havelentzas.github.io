@@ -20,7 +20,7 @@ document.addEventListener('mousemove', e => {
   requestAnimationFrame(trackRing);
 })();
 
-document.querySelectorAll('a, button, .run-entry, .disc-item, .location-item, .edu-item').forEach(el => {
+document.querySelectorAll('a, button, .disc-cell, .exp-entry, .loc-item, .edu-item').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
 });
@@ -30,12 +30,12 @@ document.querySelectorAll('a, button, .run-entry, .disc-item, .location-item, .e
 const canvas = document.getElementById('bg-canvas');
 const ctx    = canvas.getContext('2d');
 
-const SPACING  = 42;
-const RADIUS   = 140;
+const SPACING = 38;
+const RADIUS  = 130;
 
-let dots  = [];
-let dmx   = -9999;
-let dmy   = -9999;
+let dots = [];
+let dmx  = -9999;
+let dmy  = -9999;
 
 function buildDots() {
   canvas.width  = canvas.offsetWidth;
@@ -69,20 +69,15 @@ document.addEventListener('mousemove', e => {
     const dx   = d.x - dmx;
     const dy   = d.y - dmy;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    const prox = Math.max(0, 1 - dist / RADIUS);          // 0–1
+    const prox = Math.max(0, 1 - dist / RADIUS);
 
     const pulse   = (Math.sin(t * d.spd + d.phase) + 1) * 0.5;
-    const opacity = 0.06 + pulse * 0.04 + prox * 0.48;
-    const size    = 1.1 + prox * 2.2;
-
-    // Warm cream → accent orange
-    const r = Math.round(200 - 8  * prox);
-    const g = Math.round(175 - 85 * prox);
-    const b = Math.round(145 - 105 * prox);
+    const opacity = 0.07 + pulse * 0.05 + prox * 0.45;
+    const size    = 1.1 + prox * 2.0;
 
     ctx.beginPath();
     ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${r},${g},${b},${opacity})`;
+    ctx.fillStyle = `rgba(22, 58, 110, ${opacity})`;
     ctx.fill();
   }
 
@@ -106,10 +101,14 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 
-// ── Smooth nav transparency ─────────────────────────────────────────────────────
+// ── Nav on scroll ───────────────────────────────────────────────────────────────
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
-  nav.style.background = window.scrollY > 60
-    ? 'rgba(12, 12, 10, 0.9)'
-    : 'transparent';
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(247, 245, 241, 0.9)';
+    nav.style.backdropFilter = 'blur(10px)';
+  } else {
+    nav.style.background = '';
+    nav.style.backdropFilter = '';
+  }
 }, { passive: true });
