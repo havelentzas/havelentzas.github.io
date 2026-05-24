@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harrison Velentzas</title>
-  <meta name="description" content="Harrison Velentzas — International Studies honors student at Leiden University, event coordinator and media specialist.">
+  <title>Harrison Velentzas — Event Specialist</title>
+  <meta name="description" content="Harrison Velentzas — Freelance event specialist with international and cross-cultural experience. Based in the Netherlands.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
 
     :root {
       --bg:        #F5F5F3;
-      --card:      #EBEBЕ8;
-      --card-hover:#E1E1DD;
+      --card:      #EBEAE7;
+      --card-hover:#E1E0DC;
       --text:      #0F0F0E;
       --muted:     #888884;
       --accent:    #C05A28;
@@ -32,10 +32,10 @@
       min-height: 100vh;
     }
 
-    /* ── Two-column layout ── */
+    /* ── Layout ── */
     .layout {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 280px 1fr;
       max-width: 1020px;
       margin: 0 auto;
       padding: 0 2.5rem;
@@ -62,38 +62,44 @@
       margin-bottom: 0.35rem;
     }
 
-    .tagline {
-      font-size: 0.78rem;
-      font-weight: 400;
+    .role-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .location {
+      font-size: 0.75rem;
       color: var(--muted);
-      line-height: 1.5;
       margin-bottom: 1.6rem;
     }
 
-    .tagline a {
+    .bio {
+      font-size: 0.83rem;
+      font-weight: 300;
+      line-height: 1.72;
+      margin-bottom: 2rem;
+    }
+
+    .bio p + p { margin-top: 0.65rem; }
+
+    .bio a {
       color: inherit;
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-color: var(--border);
       transition: color 0.15s;
     }
-    .tagline a:hover { color: var(--accent); }
-
-    .bio {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .bio p + p { margin-top: 0.7rem; }
+    .bio a:hover { color: var(--accent); }
 
     /* Social links */
     .social {
       display: flex;
       flex-direction: column;
-      gap: 0;
       border-top: 1px solid var(--border);
       padding-top: 1.2rem;
     }
@@ -106,8 +112,6 @@
       text-decoration: none;
       color: var(--muted);
       font-size: 0.78rem;
-      font-weight: 400;
-      border-bottom: 1px solid transparent;
       transition: color 0.15s;
     }
 
@@ -120,16 +124,11 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--muted);
-      min-width: 72px;
     }
 
     .social-link:hover .social-label { color: var(--accent); }
 
-    .social-arrow {
-      font-size: 0.78rem;
-      transition: transform 0.15s;
-    }
-
+    .social-arrow { transition: transform 0.15s; }
     .social-link:hover .social-arrow { transform: translateX(3px); }
 
     /* ── Main content ── */
@@ -138,18 +137,41 @@
       animation: rise 0.5s 0.08s ease both;
     }
 
-    section {
-      padding-bottom: 2.4rem;
-      margin-bottom: 2.4rem;
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 2rem;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 2.8rem;
     }
 
-    section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .tab-btn {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0 0 0.85rem;
+      margin-bottom: -1px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
     }
 
+    .tab-btn:hover { color: var(--text); }
+
+    .tab-btn.is-active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: block; }
+
+    /* ── Section label ── */
     .section-label {
       font-family: 'Syne', sans-serif;
       font-size: 0.65rem;
@@ -157,7 +179,114 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── CV sections ── */
+    .cv-section {
+      padding-bottom: 2.6rem;
+      margin-bottom: 2.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cv-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* ── Experience entries ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 0 1.8rem;
+      padding: 1.4rem 0;
+    }
+
+    .entry + .entry { border-top: 1px solid var(--border); }
+
+    .entry-period {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.55;
+      padding-top: 0.18rem;
+    }
+
+    .entry-org {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.18rem;
+    }
+
+    .entry-role {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .entry-desc {
+      font-size: 0.79rem;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* Grouped roles under one org */
+    .subroles { display: flex; flex-direction: column; gap: 1.1rem; }
+
+    .subrole-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .subrole-header .entry-role { margin-bottom: 0; }
+
+    .subrole-dates {
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Education ── */
+    .edu-entry { padding: 0.85rem 0; }
+    .edu-entry + .edu-entry { border-top: 1px solid var(--border); }
+
+    .edu-inst {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .edu-detail {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ── Skills ── */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .skill-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.28rem 0.65rem;
     }
 
     /* ── Note cards ── */
@@ -173,7 +302,7 @@
       text-decoration: none;
       color: inherit;
       border: 1px solid transparent;
-      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+      transition: background 0.18s, border-color 0.18s, transform 0.18s;
     }
 
     .card:hover {
@@ -188,8 +317,8 @@
       font-family: 'Syne', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
-      margin-bottom: 0.15rem;
       letter-spacing: -0.01em;
+      margin-bottom: 0.15rem;
     }
 
     .card-desc {
@@ -203,7 +332,7 @@
       font-size: 0.85rem;
       color: var(--muted);
       flex-shrink: 0;
-      transition: transform 0.18s ease, color 0.18s ease;
+      transition: transform 0.18s, color 0.18s;
     }
 
     .card:hover .card-arrow {
@@ -218,7 +347,7 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 680px) {
+    @media (max-width: 700px) {
       .layout {
         grid-template-columns: 1fr;
         padding: 0 1.5rem;
@@ -232,8 +361,16 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .content {
-        padding: 2.5rem 0 4rem;
+      .content { padding: 2.5rem 0 4rem; }
+
+      .entry {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+
+      .subrole-header {
+        flex-direction: column;
+        gap: 0.1rem;
       }
     }
   </style>
@@ -242,17 +379,20 @@
   <div class="layout">
 
     <aside class="sidebar">
-      <h1 class="name">Harrison Velentzas</h1>
-      <p class="tagline">
-        International Studies · Honors<br>
-        <a href="https://www.universiteitleiden.nl/en" target="_blank" rel="noopener">Leiden University</a>
-      </p>
+      <h1 class="name">Harrison<br>Velentzas</h1>
+      <p class="role-title">Freelance Event Specialist</p>
+      <p class="location">The Randstad, Netherlands</p>
 
       <div class="bio">
-        <p>I'm an International Studies honors student at Leiden University. Alongside my degree I work in event coordination and media production — I founded the Leiden Student Creative Agency, serve as Deputy Secretary-General of the European Horizons Youth Security Conference, and have worked with organisations including the NBA's European Live Production team.</p>
+        <p>Event coordinator and media specialist with experience spanning cultures and crossing borders — from VVIP motorsport logistics and NBA live production to international conference management and creative direction.</p>
+        <p>Available for event coordination, production, and media work. Honors student at <a href="https://www.universiteitleiden.nl/en" target="_blank" rel="noopener">Leiden University</a> reading International Studies.</p>
       </div>
 
       <nav class="social">
+        <a href="mailto:harrison.velentzas@gmail.com" class="social-link">
+          <span class="social-label">Email</span>
+          <span class="social-arrow">→</span>
+        </a>
         <a href="https://www.linkedin.com/in/harrisonvelentzas/" class="social-link" target="_blank" rel="noopener">
           <span class="social-label">LinkedIn</span>
           <span class="social-arrow">→</span>
@@ -265,16 +405,131 @@
           <span class="social-label">Instagram</span>
           <span class="social-arrow">→</span>
         </a>
-        <a href="mailto:harrison.velentzas@gmail.com" class="social-link">
-          <span class="social-label">Email</span>
-          <span class="social-arrow">→</span>
-        </a>
       </nav>
     </aside>
 
     <main class="content">
-      <section>
-        <p class="section-label">Notes</p>
+
+      <nav class="tabs" role="tablist">
+        <button class="tab-btn is-active" data-tab="cv" role="tab" aria-selected="true">Experience</button>
+        <button class="tab-btn" data-tab="notes" role="tab" aria-selected="false">Notes</button>
+      </nav>
+
+      <!-- Experience tab -->
+      <div id="tab-cv" class="tab-panel is-active" role="tabpanel">
+
+        <div class="cv-section">
+          <p class="section-label">Experience</p>
+
+          <div class="entry">
+            <div class="entry-period">Apr 2026<br>Present</div>
+            <div>
+              <div class="entry-org">GoHammerhead</div>
+              <div class="entry-role">Transportation Specialist</div>
+              <p class="entry-desc">Coordinating transportation for VVIP clients at major events across motorsport, sports, and product launches. Working from planning through execution to deliver a seamless, luxury experience for the client and a strong reflection on stakeholders.</p>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-period">Jan 2026</div>
+            <div>
+              <div class="entry-org">National Basketball Association</div>
+              <div class="entry-role">Production Assistant</div>
+              <p class="entry-desc">Assisted the NBA's Live Production & Entertainment and red carpet teams in delivering a smooth, fulfilling fan experience across foreign markets — Berlin and London.</p>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-period">Jan 2026<br>Present</div>
+            <div>
+              <div class="entry-org">Leiden Student Creative Agency</div>
+              <div class="entry-role">Founder & President</div>
+              <p class="entry-desc">Founded and lead a student creative agency at Leiden University. Managing a dedicated board, driving B2B partnerships with student organisations, and overseeing talent recruitment to build a self-reinforcing creative community.</p>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-period">Oct 2024<br>Present</div>
+            <div>
+              <div class="entry-org">European Horizons — Leiden University</div>
+              <div class="subroles">
+                <div>
+                  <div class="subrole-header">
+                    <span class="entry-role">Deputy Secretary General</span>
+                    <span class="subrole-dates">Dec 2025 – Present</span>
+                  </div>
+                  <p class="entry-desc">Organising the 2026 European Horizons Youth Security Conference — responsible for event promotion, hospitality, merchandising, venue operations, and jointly overseeing speaker outreach.</p>
+                </div>
+                <div>
+                  <div class="subrole-header">
+                    <span class="entry-role">Head of Public Relations</span>
+                    <span class="subrole-dates">May 2025 – Present</span>
+                  </div>
+                  <p class="entry-desc">Formulating outreach strategy, visual standardisation, event promotion, and content production. Managing the chapter website and building relationships with international organisations, governments, and corporations.</p>
+                </div>
+                <div>
+                  <div class="subrole-header">
+                    <span class="entry-role">PR Media Coordinator</span>
+                    <span class="subrole-dates">Oct 2024 – May 2025</span>
+                  </div>
+                  <p class="entry-desc">Event photography, post-processing, and photo curation. Coordinated teams of photographers for larger chapter events and conferences.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-period">Oct 2021<br>Present</div>
+            <div>
+              <div class="entry-org">Freelance</div>
+              <div class="entry-role">Media Specialist</div>
+              <p class="entry-desc">Experienced across all stages of video production with particular strength in editing. Notable projects include assistant editing on an upcoming feature documentary, instructional production, weekly news, and historical political documentaries.</p>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-period">Jun – Aug 2025</div>
+            <div>
+              <div class="entry-org">Glen Cove City School District</div>
+              <div class="entry-role">Senior Summer Technician</div>
+              <p class="entry-desc">Wrote documentation for essential systems, developed device deployment strategies alongside full-time staff, and coordinated with outside contractors during district-wide site renovations.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cv-section">
+          <p class="section-label">Education</p>
+
+          <div class="edu-entry">
+            <div class="edu-inst">Leiden University</div>
+            <div class="edu-detail">BA International Studies · Honors · 2024 – 2027</div>
+          </div>
+          <div class="edu-entry">
+            <div class="edu-inst">Glen Cove High School</div>
+            <div class="edu-detail">Regents Diploma with Advanced Designation · 2020 – 2024</div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <p class="section-label">Skills</p>
+          <div class="skills-list">
+            <span class="skill-tag">Event Production</span>
+            <span class="skill-tag">VVIP Logistics</span>
+            <span class="skill-tag">Conference Management</span>
+            <span class="skill-tag">Venue Operations</span>
+            <span class="skill-tag">Media Production</span>
+            <span class="skill-tag">Video Editing</span>
+            <span class="skill-tag">Event Photography</span>
+            <span class="skill-tag">Strategic Partnerships</span>
+            <span class="skill-tag">Data Analysis</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Notes tab -->
+      <div id="tab-notes" class="tab-panel" role="tabpanel">
         <div class="cards">
           <a href="/webnotes/pos/philosophy-of-science-web-notes.html" class="card">
             <div class="card-body">
@@ -290,10 +545,33 @@
             </div>
             <span class="card-arrow">→</span>
           </a>
+          <a href="/webnotes/ir/" class="card">
+            <div class="card-body">
+              <div class="card-title">International Relations</div>
+              <div class="card-desc">Realism, liberalism, constructivism, and IR theory</div>
+            </div>
+            <span class="card-arrow">→</span>
+          </a>
         </div>
-      </section>
-    </main>
+      </div>
 
+    </main>
   </div>
+
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('is-active');
+      });
+    });
+  </script>
+
 <script data-goatcounter="https://havelentzas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body>
 </html>
