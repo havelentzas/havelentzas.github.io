@@ -20,72 +20,11 @@ document.addEventListener('mousemove', e => {
   requestAnimationFrame(trackRing);
 })();
 
-document.querySelectorAll('a, button, .disc-cell, .exp-entry, .loc-item, .edu-item').forEach(el => {
+document.querySelectorAll('a, button, .disc-cell, .exp-entry, .loc-item, .edu-item, .hero-photo').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
 });
 
-
-// ── Canvas dot field ────────────────────────────────────────────────────────────
-const canvas = document.getElementById('bg-canvas');
-const ctx    = canvas.getContext('2d');
-
-const SPACING = 38;
-const RADIUS  = 130;
-
-let dots = [];
-let dmx  = -9999;
-let dmy  = -9999;
-
-function buildDots() {
-  canvas.width  = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-  dots = [];
-  const cols = Math.ceil(canvas.width  / SPACING) + 1;
-  const rows = Math.ceil(canvas.height / SPACING) + 1;
-  for (let c = 0; c <= cols; c++) {
-    for (let r = 0; r <= rows; r++) {
-      dots.push({
-        x:     c * SPACING,
-        y:     r * SPACING,
-        phase: Math.random() * Math.PI * 2,
-        spd:   0.2 + Math.random() * 0.35,
-      });
-    }
-  }
-}
-
-document.addEventListener('mousemove', e => {
-  const rect = canvas.getBoundingClientRect();
-  dmx = e.clientX - rect.left;
-  dmy = e.clientY - rect.top;
-});
-
-(function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const t = Date.now() / 1000;
-
-  for (const d of dots) {
-    const dx   = d.x - dmx;
-    const dy   = d.y - dmy;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const prox = Math.max(0, 1 - dist / RADIUS);
-
-    const pulse   = (Math.sin(t * d.spd + d.phase) + 1) * 0.5;
-    const opacity = 0.07 + pulse * 0.05 + prox * 0.45;
-    const size    = 1.1 + prox * 2.0;
-
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(22, 58, 110, ${opacity})`;
-    ctx.fill();
-  }
-
-  requestAnimationFrame(draw);
-})();
-
-window.addEventListener('resize', buildDots);
-buildDots();
 
 
 // ── Scroll reveal ───────────────────────────────────────────────────────────────
