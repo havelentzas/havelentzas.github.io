@@ -89,22 +89,21 @@ document.querySelectorAll('.reveal, .stagger').forEach(el => {
   // Bounding box of Natural Earth at ±180°/±90°
   const X_MAX = Math.PI * 0.8707;  // ≈ 2.736
   const Y_MAX = 1.4222;             // at ±90° latitude
-
-  // Canvas height ratio that fills the projection with no clipping
-  const H_RATIO = Y_MAX / X_MAX;   // ≈ 0.520
+  const Y_BOT = -1.20;              // ≈ -70°S — crops Antarctic whitespace
 
   function resize() {
     const cssW = canvas.parentElement.clientWidth;
-    const cssH = Math.round(cssW * H_RATIO);
+    // Height covers from +Y_MAX (north pole) down to Y_BOT (southern crop)
+    const projH = Y_MAX - Y_BOT;
+    const cssH  = Math.round(cssW * projH / (2 * X_MAX));
     canvas.width        = cssW * dpr;
     canvas.height       = cssH * dpr;
     canvas.style.width  = cssW + 'px';
     canvas.style.height = cssH + 'px';
 
-    // Centre the projection and scale it to fill the canvas exactly
-    sc = Math.min(cssW / (2 * X_MAX), cssH / (2 * Y_MAX)) * dpr;
+    sc = (cssW / (2 * X_MAX)) * dpr;  // scale to fill width exactly
     tx = (cssW / 2) * dpr;
-    ty = (cssH / 2) * dpr;
+    ty = Y_MAX * sc;                   // top of canvas = north pole
 
     if (features) draw();
   }
