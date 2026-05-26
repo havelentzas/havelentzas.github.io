@@ -1,0 +1,7 @@
+In December I decided to finally get started on an idea that had been brewing for quite some time: the [**Leiden Student Creative Agency**](https://www.linkedin.com/company/leiden-sca/) (LSCA). 
+
+The formula was simple, connect creative students with student organizations so that they can best elevate their events and their brand. I quickly found fantastic partners in [**Leon Jad El Haddad**](https://www.linkedin.com/in/leon-jad-el-haddad-77b781221/) and [**Laura Vatrenjak**](https://www.linkedin.com/in/laura-vatrenjak-07381037b/), together we molded a concrete vision for LSCA and set up the systems needed to ensure a smooth experience for creatives and student organizations from the start.
+
+Last week my team and I launched the agency and executed on our first project with [**Rise The Hague**](https://www.linkedin.com/company/rise-the-hague/), shooting photos for the "Derby of the Century" football match between the International Studies and International Relations programs at[**Leiden University**](https://www.linkedin.com/company/leiden-university/).
+
+More than just a service to our partner organizations, LSCA is a community of creative individuals, building one another's skills and pushing the boundaries of what students can do both as indivudals, and as a collective.
