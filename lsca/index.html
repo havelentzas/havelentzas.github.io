@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSCA — Leiden Student Creative Agency</title>
+  <meta name="description" content="Leiden Student Creative Agency. Creative work for a changing world.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,800;0,900;1,300&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:        #FAF0E2;
+      --orange-pale:  #F5A860;
+      --orange:       #E87430;
+      --red-orange:   #D44020;
+      --teal:         #1A7A9A;
+      --teal-dark:    #0B3D52;
+      --white:        #FFFFFF;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: var(--teal-dark);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100svh;
+      min-height: 600px;
+      background: linear-gradient(
+        to bottom,
+        var(--cream)        0%,
+        var(--orange-pale) 18%,
+        var(--orange)      40%,
+        var(--red-orange)  60%,
+        var(--teal)        80%,
+        var(--teal-dark)   100%
+      );
+      overflow: hidden;
+    }
+
+    /* grain overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      z-index: 5;
+    }
+
+    /* ── Canvas ── */
+    #helix {
+      position: absolute;
+      top: 0;
+      right: -4%;
+      width: 58%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 2.8rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .nav-logo-text {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+      color: var(--teal-dark);
+    }
+
+    .nav-menu-btn {
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.3rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      line-height: 1;
+    }
+
+    .nav-menu-btn:hover {
+      background: var(--crimson);
+    }
+
+    /* ── Bottom content area ── */
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 0 2.8rem 2.4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 0 0;
+    }
+
+    /* Left: label + headline + tagline */
+    .hero-left {
+      grid-column: 1;
+      grid-row: 1;
+      padding-bottom: 2rem;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.65rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.4rem, 7.5vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.82rem, 1.2vw, 0.98rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.62);
+      letter-spacing: 0.01em;
+    }
+
+    /* Bottom nav links (left-aligned, full row) */
+    .hero-nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      gap: clamp(1.2rem, 3.5vw, 3rem);
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: 1.1rem;
+      list-style: none;
+    }
+
+    .hero-nav li:last-child {
+      margin-left: auto; /* push social to the right */
+    }
+
+    .hero-nav a {
+      font-size: clamp(0.72rem, 1vw, 0.82rem);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .hero-nav a:hover {
+      color: var(--white);
+    }
+
+    /* Social icons — pushed to end via last-child */
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-social a {
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      transition: color 0.2s ease;
+    }
+
+    .hero-social a:hover {
+      color: var(--white);
+    }
+
+    .hero-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      #helix {
+        width: 100%;
+        right: 0;
+        opacity: 0.55;
+      }
+
+      .hero-bottom {
+        padding: 0 1.5rem 1.8rem;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left {
+        padding-bottom: 1.4rem;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.6rem, 13vw, 4rem);
+      }
+
+      .hero-nav {
+        flex-wrap: wrap;
+        gap: 0.75rem 1.5rem;
+      }
+
+      .hero-nav li:last-child {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-logo-text {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+
+  <canvas id="helix"></canvas>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <img src="assets/ref/LSCA.png" alt="LSCA">
+      <span class="nav-logo-text">Leiden Student<br>Creative Agency</span>
+    </a>
+    <button class="nav-menu-btn">Menu</button>
+  </nav>
+
+  <!-- Bottom content -->
+  <div class="hero-bottom">
+
+    <div class="hero-left">
+      <span class="hero-label">LSCA</span>
+      <h1 class="hero-headline">Creative<br>work for a<br>changing<br>world.</h1>
+      <p class="hero-tagline">Student-run. Leiden-based. Built for the real world.</p>
+    </div>
+
+    <ul class="hero-nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <div class="hero-social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('helix');
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true,
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
+  camera.position.set(0, 0, 5.5);
+  camera.lookAt(0, 0, 0);
+
+  /* ── Resize ── */
+  function resize() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    if (renderer.domElement.width !== w || renderer.domElement.height !== h) {
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Blob geometry ── */
+  const geo = new THREE.SphereGeometry(1.65, 80, 80);
+  // Snapshot of rest-pose vertex positions for displacement reference
+  const rest = geo.attributes.position.array.slice();
+
+  const mat = new THREE.MeshStandardMaterial({
+    color:             new THREE.Color('#0E5C76'),
+    roughness:         0.10,
+    metalness:         0.28,
+    emissive:          new THREE.Color('#061E2A'),
+    emissiveIntensity: 0.35,
+  });
+
+  const blob = new THREE.Mesh(geo, mat);
+  blob.position.set(0.4, 0.15, 0); // sit slightly right-of-center
+  scene.add(blob);
+
+  /* ── Lights — orange vs teal tell the logo's colour story ── */
+
+  // Warm orange key light — upper right, logo orange
+  const warmLight = new THREE.PointLight(new THREE.Color('#E87430'), 4.2, 18);
+  warmLight.position.set(4.5, 3.5, 4);
+  scene.add(warmLight);
+
+  // Pale orange fill — softer, wraps around the top
+  const fillLight = new THREE.PointLight(new THREE.Color('#F5A860'), 1.6, 14);
+  fillLight.position.set(-2, 4, 2);
+  scene.add(fillLight);
+
+  // Cool teal rim — from behind and below, adds depth + logo teal
+  const rimLight = new THREE.PointLight(new THREE.Color('#3AB0D0'), 2.4, 12);
+  rimLight.position.set(-3.5, -2.5, -3);
+  scene.add(rimLight);
+
+  // Deep ambient so nothing goes pure black
+  scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+
+  /* ── Vertex displacement helpers ── */
+
+  // Smooth, pseudo-random noise via stacked sines — no extra library needed
+  function noise(x, y, z, t) {
+    return (
+      Math.sin(x * 2.3 + t * 0.62) * Math.cos(y * 1.9 + t * 0.41) * 0.22 +
+      Math.cos(y * 3.1 + t * 0.88) * Math.sin(z * 2.7 + t * 0.55) * 0.17 +
+      Math.sin(z * 1.7 + t * 0.73) * Math.cos(x * 3.4 + t * 1.10) * 0.14 +
+      Math.cos((x + z) * 2.5 + t * 0.48) * Math.sin((y + z) * 2.0 + t * 0.95) * 0.10 +
+      Math.sin((x + y + z) * 1.4 + t * 0.30) * 0.08
+    );
+  }
+
+  /* ── Animate ── */
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    const pos = geo.attributes.position;
+
+    for (let i = 0; i < pos.count; i++) {
+      const ox = rest[i * 3];
+      const oy = rest[i * 3 + 1];
+      const oz = rest[i * 3 + 2];
+
+      // Normalise to unit sphere direction
+      const len = Math.sqrt(ox * ox + oy * oy + oz * oz);
+      const nx = ox / len, ny = oy / len, nz = oz / len;
+
+      // Displace outward along the surface normal
+      const disp = noise(nx, ny, nz, t);
+      const r = 1.65 + disp * 0.55;
+
+      pos.setXYZ(i, nx * r, ny * r, nz * r);
+    }
+
+    pos.needsUpdate = true;
+    geo.computeVertexNormals(); // keeps lighting accurate as surface deforms
+
+    // Slow, dreamy drift rotation
+    blob.rotation.y = t * 0.09;
+    blob.rotation.x = Math.sin(t * 0.06) * 0.12;
+    blob.rotation.z = Math.cos(t * 0.04) * 0.06;
+
+    // Warm light orbits gently to animate the highlight sweep
+    warmLight.position.x = Math.cos(t * 0.18) * 4.5;
+    warmLight.position.z = Math.sin(t * 0.18) * 4.0 + 2;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+})();
+</script>
+
+<script data-goatcounter="https://havelentzas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body>
+</html>
