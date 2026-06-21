@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Work — Harrison Velentzas</title>
+  <meta name="description" content="Academic papers, coursework, and honors research from International Studies at Leiden University.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/Board%20Headshots-4.png">
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --bg:           #f8f7f4;
+      --bg-alt:       #f0eeeb;
+      --green:        #1e3d2f;
+      --green-mid:    #2a5540;
+      --text:         #1a1a1a;
+      --muted:        #6b6b6b;
+      --gold:         #c9a84c;
+      --border:       rgba(26, 26, 26, 0.1);
+      --border-hover: rgba(30, 61, 47, 0.35);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --nav-h:        68px;
+      --pad-x:        clamp(24px, 6vw, 88px);
+      --pad-y:        clamp(44px, 6.5vw, 84px);
+      --max-w:        1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+      z-index: 100;
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+    nav.scrolled {
+      background: rgba(248, 247, 244, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.03em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover  { opacity: 1; }
+    .nav-links a.active { opacity: 1; color: var(--green); }
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green);
+      padding: 0.55rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-mid); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    nav.open .nav-toggle span:first-child { transform: translateY(6.5px) rotate(45deg); }
+    nav.open .nav-toggle span:last-child  { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      padding: calc(var(--nav-h) + 60px) var(--pad-x) 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.75rem, 7.5vw, 8rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.75rem;
+    }
+    .page-title em { font-style: italic; color: var(--green); }
+    .page-sub {
+      font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+      font-weight: 300;
+      color: var(--text);
+      opacity: 0.65;
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .page-hero-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .hero-meta-item {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-meta-item strong {
+      display: block;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    /* ── Tab Bar ── */
+    .tab-bar-wrap {
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 var(--pad-x);
+    }
+    .tab-bar { max-width: var(--max-w); margin: 0 auto; display: flex; }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 1.1rem 0;
+      margin-right: 2.5rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.4;
+      cursor: pointer;
+      transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+      position: relative;
+      bottom: -1px;
+    }
+    .tab-btn:hover { opacity: 0.7; }
+    .tab-btn.active { color: var(--green); opacity: 1; border-bottom-color: var(--green); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .content-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--pad-y) var(--pad-x);
+    }
+
+    /* ── Honors Feature Card ── */
+    .honors-feature {
+      background: var(--green);
+      color: var(--bg);
+      border-radius: 3px;
+      padding: clamp(36px, 4.5vw, 60px);
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .honors-feature::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .honors-feature::after {
+      content: '';
+      position: absolute;
+      top: -110px; right: -110px;
+      width: 400px; height: 400px;
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .honors-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .honors-badge::before { content: '★'; font-size: 0.65rem; }
+    .honors-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.875rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: var(--bg);
+      margin-bottom: 0.75rem;
+      max-width: 640px;
+    }
+    .honors-subtitle {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(248, 247, 244, 0.45);
+      margin-bottom: 1.25rem;
+    }
+    .honors-abstract {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(248, 247, 244, 0.75);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    .honors-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      padding: 0.7rem 1.375rem;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s, gap 0.2s;
+    }
+    .honors-link:hover { background: rgba(201, 168, 76, 0.12); border-color: var(--gold); gap: 0.8rem; }
+
+    /* ── Year Divider ── */
+    .year-group { margin-bottom: 3rem; }
+    .year-group:last-child { margin-bottom: 0; }
+    .year-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .year-divider-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .year-divider-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── Paper Cards Grid ── */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+    .paper-card {
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 1.875rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .paper-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px 0 0 2px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .paper-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.06);
+      transform: translateY(-2px);
+    }
+    .paper-card:hover::before { opacity: 1; }
+    .paper-course-tag {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .paper-title {
+      font-family: var(--font-display);
+      font-size: 1.3125rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .paper-meta { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+    .paper-abstract {
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text);
+      opacity: 0.68;
+      flex: 1;
+    }
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--green);
+      margin-top: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      transition: gap 0.2s;
+    }
+    .paper-link:hover { gap: 0.7rem; }
+    .paper-link--pending {
+      color: var(--muted);
+      opacity: 0.55;
+      cursor: default;
+      pointer-events: none;
+    }
+    .paper-link--pending::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Courses Tab ── */
+    .courses-list { display: flex; flex-direction: column; }
+
+    .course-year-header {
+      padding: 2.5rem 0 0.75rem;
+    }
+    .course-year-header:first-child { padding-top: 0; }
+    .course-year-label {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .course-year-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .course-section {
+      border-top: 1px solid var(--border);
+      padding: 2.75rem 0;
+    }
+    .course-section:last-child { border-bottom: 1px solid var(--border); }
+
+    .course-header {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 1.75rem;
+      align-items: start;
+      margin-bottom: 1.75rem;
+    }
+    .course-num {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--muted);
+      opacity: 0.4;
+      line-height: 1.2;
+      padding-top: 0.35rem;
+    }
+    .course-code {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .course-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .course-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text);
+      opacity: 0.62;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    .course-badge {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      padding: 0.4rem 0.875rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      margin-top: 0.35rem;
+    }
+
+    .course-papers {
+      padding-left: calc(3rem + 1.75rem);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .course-paper-card {
+      border: 1px solid var(--border);
+      padding: 1.375rem 1.5rem;
+      border-radius: 2px;
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-paper-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 18px rgba(0,0,0,0.05); }
+    .course-paper-type {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.375rem;
+    }
+    .course-paper-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.375rem;
+    }
+    .course-paper-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.625rem; }
+    .course-paper-abstract {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text);
+      opacity: 0.62;
+      flex: 1;
+      margin-bottom: 0.875rem;
+    }
+    .course-paper-link {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--green);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+      margin-top: auto;
+      padding-top: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+    .course-paper-link:hover { gap: 0.7rem; }
+    .course-paper-link--pending {
+      color: var(--muted);
+      opacity: 0.55;
+      cursor: default;
+      pointer-events: none;
+    }
+    .course-paper-link--pending::before {
+      content: '';
+      display: inline-block;
+      width: 7px; height: 7px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .course-paper-card.honors-card {
+      border-color: rgba(201, 168, 76, 0.3);
+      background: rgba(201, 168, 76, 0.04);
+    }
+    .course-paper-card.honors-card:hover { border-color: rgba(201, 168, 76, 0.6); }
+    .honors-card-badge {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .course-note {
+      padding-left: calc(3rem + 1.75rem);
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.6;
+      grid-column: 1 / -1;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 1.875rem var(--pad-x);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .footer-back { color: var(--green); font-weight: 500; transition: opacity 0.2s; }
+    .footer-back:hover { opacity: 0.65; }
+
+    /* ── Mobile ── */
+    @media (max-width: 860px) {
+      .nav-right { display: none; }
+      .nav-right.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: var(--nav-h) 0 0 0;
+        background: var(--bg);
+        padding: 2.5rem var(--pad-x);
+        gap: 2rem;
+        overflow-y: auto;
+      }
+      .nav-toggle { display: flex; }
+      .nav-links { flex-direction: column; gap: 1.25rem; }
+      .nav-links a { font-size: 1rem; opacity: 1; }
+      .papers-grid { grid-template-columns: 1fr; }
+      .course-header { grid-template-columns: 1fr; gap: 0.625rem; }
+      .course-num { display: none; }
+      .course-papers { padding-left: 0; grid-template-columns: 1fr; }
+      .course-note { padding-left: 0; }
+      .course-badge { align-self: start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <a href="/" class="nav-logo">Harrison Velentzas</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-right" id="navRight">
+      <ul class="nav-links">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/academics" class="active">Academic</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <a href="mailto:harrison.velentzas@gmail.com" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <span class="section-label">Leiden University · International Studies BA · The Hague</span>
+      <h1 class="page-title">Academic<br><em>Work</em></h1>
+      <p class="page-sub">Research, analysis, and writing from my undergraduate studies in International Studies. An interdisciplinary programme spanning international relations, political economy, European politics, research methods, and the philosophy of social science.</p>
+      <div class="page-hero-meta">
+        <div class="hero-meta-item">Programme<strong>International Studies BA</strong></div>
+        <div class="hero-meta-item">Track<strong>Honors</strong></div>
+        <div class="hero-meta-item">Institution<strong>Leiden University</strong></div>
+        <div class="hero-meta-item">Region<strong>Europe &amp; French</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tab Bar ── -->
+  <div class="tab-bar-wrap">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="papers">Papers</button>
+      <button class="tab-btn" data-tab="courses">By Course</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PAPERS TAB
+  ════════════════════════════════════════ -->
+  <div id="tab-papers" class="tab-content active">
+    <div class="content-wrap">
+
+      <!-- Honors Feature -->
+      <div class="honors-feature">
+        <div class="honors-badge">Honors Programme · Pre-Thesis Research</div>
+        <h2 class="honors-title">Institutional Attenuation</h2>
+        <div class="honors-subtitle">Thematic Seminar: FDI, MNCs &amp; Emerging Economies · 2026 · 5,388 words</div>
+        <p class="honors-abstract">Introduces the concept of institutional attenuation: the structural process by which democratic tax systems absorb a predictable fraction of statutory corporate tax rates before they translate into effective corporate burdens. OLS regression across 59 democracies found that for every percentage point increase in the statutory rate, effective rates rise by only 0.94 points. Spearman correlation (ρ = 0.370, p = 0.004) confirmed the attenuation gap grows significantly with country size, reframing the race-to-the-bottom debate and analyzing the OECD's Pillar Two as a constraint on this mechanism.</p>
+        <span class="honors-link" style="cursor:default; opacity:0.6;">PDF pending</span>
+      </div>
+
+      <!-- Year 2 Papers -->
+      <div class="year-group">
+        <div class="year-divider">
+          <span class="year-divider-label">Year 2 · 2025–2026</span>
+          <span class="year-divider-line"></span>
+        </div>
+        <div class="papers-grid">
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Global Political Economy</span>
+            <h3 class="paper-title">This Dictator Does</h3>
+            <div class="paper-meta">2025–26 · Essay</div>
+            <p class="paper-abstract">Uses Singapore as a deviant case to challenge Genschel et al.'s (2016) argument that autocracies have no structural incentive to compete for foreign capital via low corporate tax rates. Argues the theory fails because it conflates regime type with legitimacy source: Singapore's PAP grounds its authority in economic performance, functionally paralleling a democracy's electoral incentive to attract capital. Proposes revising the unit of analysis from regime type to legitimacy source for a more robust theory of tax competition.</p>
+            <a href="../ThisDictatorDoes.pdf" target="_blank" rel="noopener" class="paper-link">Read paper ↗</a>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Research Methods</span>
+            <h3 class="paper-title">Mozambique / FRELIMO</h3>
+            <div class="paper-meta">2025–26 · Research Paper</div>
+            <p class="paper-abstract">Applied process tracing across 1962 to the late 1980s to explain why FRELIMO established a one-party authoritarian state despite its origins as a broad anti-colonial coalition. Found that both competing explanations hold simultaneously: militarized institutional legacies created the authoritarian state structure, which was then reinforced and expanded as a rational response to genuine security threats from RENAMO and foreign adversaries.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Politics of Europe</span>
+            <h3 class="paper-title">German Ordoliberalism and the Hartz Reforms</h3>
+            <div class="paper-meta">2025–26 · Essay</div>
+            <p class="paper-abstract">Examined whether Germany's Hartz I-IV welfare reforms under Chancellor Schröder constituted a departure from Ordoliberal welfare logic. Surveyed three competing academic explanations, modernization, neoliberal shift, and pragmatic crisis response, concluding that all three perspectives have merit and that the reforms represent an ongoing academic debate about the nature of institutional change in Germany.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Tyranny: Ancient Histories and Modern Paradigms</span>
+            <h3 class="paper-title">Tyranny of a God: Dionysus and the Discourse of Tyranny in Euripides' <em>Bacchae</em></h3>
+            <div class="paper-meta">2025–26 · Essay · 6 pages</div>
+            <p class="paper-abstract">Argues that Dionysus in Euripides' <em>Bacchae</em> exhibits the traits of the túrannos as understood in late Archaic and early Classical Greece, drawing on Luraghi's framework of recurring characteristics through which tyrannical behavior was recognized. Read against the historical tyrant Pisistratus, Dionysus' extralegality, cunning, marginal social position, and mobilization of women against the established order reveal a figure who, without holding official office, wields and relinquishes power entirely on his own accord.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Year 1 Papers -->
+      <div class="year-group">
+        <div class="year-divider">
+          <span class="year-divider-label">Year 1 · 2024–2025</span>
+          <span class="year-divider-line"></span>
+        </div>
+        <div class="papers-grid">
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Introduction to International Studies</span>
+            <h3 class="paper-title">South Africa: Energy Inequality &amp; the Green Transition</h3>
+            <div class="paper-meta">2024–25 · Final Report</div>
+            <p class="paper-abstract">Examined energy insecurity in South Africa as a lens into systemic post-Apartheid inequality, finding that white South Africans consume 47% more energy than the rest of the population despite being 10% of it, and that coal provides 82% of supply while being deeply tied to employment of historically disenfranchised Black citizens. Proposed a balanced green transition that phases out coal jobs through retraining and diversification while expanding nuclear, solar, and hydroelectric generation, presenting South Africa as a potential blueprint for the African continent.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Comparative Politics</span>
+            <h3 class="paper-title">Cuba's 2019 Constitution: Freedom and Equality</h3>
+            <div class="paper-meta">2024–25 · Essay</div>
+            <p class="paper-abstract">Analyzed Cuba's 2019 constitutional reforms, arguing the Cuban state systematically prioritizes equality over freedom. Constitutional rights are granted to LGBTQ+ individuals, women, and racial minorities, but exist as conditional freedoms revocable when they conflict with Communist Party interests. Draws on the Cato Institute's Human Freedom Index, Martha Minow on equality, and empirical data from CubaData surveys.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Francophone Cinema and its Articulations · Honors</span>
+            <h3 class="paper-title">Ethical Ambiguity in <em>The Battle of Algiers</em></h3>
+            <div class="paper-meta">Honors Assignment · Essay</div>
+            <p class="paper-abstract">Analyzed Gillo Pontecorvo's 1966 film through Hannah Arendt and Frantz Fanon, arguing it refuses to moralize by presenting political violence as a cyclical, dialectical force shaped by colonial power structures. Pontecorvo's cinematic symmetry, depicting French torture and FLN bombings with equal unflinching clarity, forces viewers to hold moral complexity without resolution, a quality contrasted against contemporary American blockbuster cinema and connected to the US Iraq invasion, Myanmar's civil war, and Gaza campus protests.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Culture and Language</span>
+            <h3 class="paper-title">Irish Language Politics &amp; Fontaines D.C.</h3>
+            <div class="paper-meta">2024–25 · Essay</div>
+            <p class="paper-abstract">A critical discourse analysis of Fontaines D.C.'s <em>In ár gCroíthe go deo</em> (Skinty Fia, 2022), examined against simultaneous UK suppression and Irish government revival efforts for the Irish language. Argues the song participates in an urban "new speaker" movement in Dublin that creates social spaces for Irish outside institutional frameworks, and that Fontaines D.C. disseminate that movement to a global audience.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+          <div class="paper-card">
+            <span class="paper-course-tag">Research Methods</span>
+            <h3 class="paper-title">Algeria / FLN: Research Design</h3>
+            <div class="paper-meta">2024–25 · Research Design (Draft)</div>
+            <p class="paper-abstract">Proposed a within-case analysis of why Algeria's FLN leadership established a one-party authoritarian state despite emerging from a popular struggle for self-determination. Tests two explanations: institutional dependence on the inherited security apparatus of the overthrown regime, and the carry-over of militarized political culture and command structures into civilian governance.</p>
+            <span class="paper-link paper-link--pending">PDF pending</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       COURSES TAB
+  ════════════════════════════════════════ -->
+  <div id="tab-courses" class="tab-content">
+    <div class="content-wrap">
+      <div class="courses-list">
+
+        <!-- ── YEAR 1 ── -->
+        <div class="course-year-header">
+          <span class="course-year-label">Year 1 · 2024–2025</span>
+        </div>
+
+        <!-- 01. Introduction to International Studies -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">01</div>
+            <div class="course-info">
+              <div class="course-code">IIS · Core · Year 1</div>
+              <h2 class="course-name">Introduction to International Studies</h2>
+              <p class="course-desc">A foundational multidisciplinary course training students to analyze global problems by drawing simultaneously from political science, history, economics, and cultural studies. Students apply this lens to an original problem analysis, culminating in a policy report.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Final Report</div>
+              <div class="course-paper-title">South Africa: Energy Inequality &amp; the Green Transition</div>
+              <div class="course-paper-meta">2024–25 · Introduction to International Studies</div>
+              <p class="course-paper-abstract">Examines energy insecurity as a lens into post-Apartheid inequality, finding coal at 82% of supply while deeply tied to disenfranchised labor, and proposes a phased green transition presenting South Africa as an African blueprint.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. World History -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">02</div>
+            <div class="course-info">
+              <div class="course-code">History · Core · Year 1</div>
+              <h2 class="course-name">World History</h2>
+              <p class="course-desc">A survey of world history from the medieval period through the 20th century, emphasizing historiography alongside events through critical seminar readings on Fascism, the Global 1968, and post-communist memory in Central and Eastern Europe. A group project challenged students to communicate history through material culture in both popular science and academic formats.</p>
+            </div>
+          </div>
+          <div class="course-note">Assessment: "Telling Stories Through Objects" group project and tutorial seminar work. No individual essay.</div>
+        </div>
+
+        <!-- 03. Comparative Politics -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">03</div>
+            <div class="course-info">
+              <div class="course-code">Political Science · Core · Year 1</div>
+              <h2 class="course-name">Comparative Politics</h2>
+              <p class="course-desc">An introduction to comparative politics using systematic conceptual tools to analyze political systems across democratic, authoritarian, and hybrid regimes worldwide. The course applies consistent frameworks of state, regime, and government to compare how different systems organize power and affect citizens' lives.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Essay</div>
+              <div class="course-paper-title">Cuba's 2019 Constitution: Freedom and Equality</div>
+              <div class="course-paper-meta">2024–25 · Comparative Politics</div>
+              <p class="course-paper-abstract">Argues the Cuban state systematically prioritizes equality over freedom, granting constitutional rights that exist as conditional freedoms revocable when they conflict with Communist Party interests.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04. Foundations of Political Economy -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">04</div>
+            <div class="course-info">
+              <div class="course-code">Political Economy · Core · Year 1</div>
+              <h2 class="course-name">Foundations of Political Economy</h2>
+              <p class="course-desc">A history of economic thought tracing major schools from Adam Smith through Keynes, Hayek, Friedman, and Polanyi, mapping how different traditions understand markets, states, labor, and distribution. Students build a conceptual vocabulary for the ideological underpinnings of different political-economic systems.</p>
+            </div>
+          </div>
+          <div class="course-note">Assessment: Final examination. No individual essay.</div>
+        </div>
+
+        <!-- 05. Culture and Language -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">05</div>
+            <div class="course-info">
+              <div class="course-code">Humanities · Core · Year 1</div>
+              <h2 class="course-name">Culture and Language</h2>
+              <p class="course-desc">An interdisciplinary examination of culture, language, and politics using critical discourse analysis to understand how cultural texts reflect and reproduce power relations. Students apply this methodology to music, film, and literature, engaging frameworks from Hannah Arendt and Frantz Fanon.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Essay</div>
+              <div class="course-paper-title">Irish Language Politics &amp; Fontaines D.C.</div>
+              <div class="course-paper-meta">2024–25 · Culture and Language</div>
+              <p class="course-paper-abstract">A critical discourse analysis of <em>In ár gCroíthe go deo</em>, arguing Fontaines D.C. participate in an urban "new speaker" movement in Dublin that creates social spaces for Irish outside institutional frameworks.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06. French Language -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">06</div>
+            <div class="course-info">
+              <div class="course-code">Language · Regional Focus · Year 1 (Ongoing)</div>
+              <h2 class="course-name">French Language</h2>
+              <p class="course-desc">A French language course developing speaking, listening, reading, and writing skills through cultural and francophone content, taken as part of the regional focus on Europe. Oral components include prepared presentations, film analysis of <em>Le chant du loup</em> (2019), and a group presentation on Apollo 11 and the Cold War Space Race.</p>
+            </div>
+          </div>
+          <div class="course-note">Assessment: Oral presentations and conversational exercises. No written academic essay.</div>
+        </div>
+
+        <!-- ── YEAR 2 ── -->
+        <div class="course-year-header">
+          <span class="course-year-label">Year 2 · 2025–2026</span>
+        </div>
+
+        <!-- 07. Politics of Europe -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">07</div>
+            <div class="course-info">
+              <div class="course-code">Political Science · Year 2</div>
+              <h2 class="course-name">Politics of Europe</h2>
+              <p class="course-desc">A comparative examination of European political systems, institutions, and ideologies, with particular attention to how historical ideological traditions shape contemporary welfare and economic policy. The course covers European political families and comparative welfare state design, from Bismarckian and Scandinavian models to Ordoliberal Germany.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Essay</div>
+              <div class="course-paper-title">German Ordoliberalism and the Hartz Reforms</div>
+              <div class="course-paper-meta">2025–26 · Politics of Europe</div>
+              <p class="course-paper-abstract">Surveyed three competing explanations for the Hartz I-IV reforms (modernization, neoliberal shift, and pragmatic crisis response), concluding that all three hold simultaneously and represent an ongoing debate about institutional change in Germany.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08. Tyranny: Ancient Histories and Modern Paradigms -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">08</div>
+            <div class="course-info">
+              <div class="course-code">History / Political Theory · Year 2</div>
+              <h2 class="course-name">Tyranny: Ancient Histories and Modern Paradigms</h2>
+              <p class="course-desc">An examination of tyranny as a political concept across ancient history and its modern analytical legacies, drawing on Greek tragedy, classical historiography, and contemporary political theory. Students close-read primary ancient sources alongside modern scholarly frameworks to analyze how the concept of the túrannos has been constructed, contested, and applied across time.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Essay · 6 pages</div>
+              <div class="course-paper-title">Tyranny of a God: Dionysus and the Discourse of Tyranny in Euripides' <em>Bacchae</em></div>
+              <div class="course-paper-meta">2025–26 · Tyranny: Ancient Histories and Modern Paradigms</div>
+              <p class="course-paper-abstract">Argues that Dionysus exhibits the traits of the túrannos as understood in late Archaic Greece, drawing parallels with the historical tyrant Pisistratus across extralegality, cunning, marginal social position, and the mobilization of the marginalized.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 09. Research Methods -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">09</div>
+            <div class="course-info">
+              <div class="course-code">Methodology · Core · Year 1–2</div>
+              <h2 class="course-name">Research Methods</h2>
+              <p class="course-desc">Training in social science research design, from puzzle identification through methodological selection and hypothesis testing, with emphasis on qualitative and comparative approaches. The course develops skills in process tracing, within-case analysis, and causal inference, applied to two original research projects.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Research Paper</div>
+              <div class="course-paper-title">Mozambique / FRELIMO</div>
+              <div class="course-paper-meta">2025–26 · Research Methods</div>
+              <p class="course-paper-abstract">Process tracing across 1962 to the late 1980s testing two explanations for FRELIMO's authoritarian turn; finds both hold simultaneously, with militarized legacies followed by rational securitization under genuine external threats.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+            <div class="course-paper-card">
+              <div class="course-paper-type">Research Design (Draft)</div>
+              <div class="course-paper-title">Algeria / FLN</div>
+              <div class="course-paper-meta">2024–25 · Research Methods</div>
+              <p class="course-paper-abstract">Within-case design testing why the FLN established a one-party state despite its origins in a mass anti-colonial movement, contrasting institutional inheritance with the militarization of political culture.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Global Political Economy -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">10</div>
+            <div class="course-info">
+              <div class="course-code">GPE · Political Economy · Year 2</div>
+              <h2 class="course-name">Global Political Economy</h2>
+              <p class="course-desc">An examination of the intersection between global politics and international economics, focusing on how regime type, state structure, and political institutions shape economic policy, and vice versa. Students engage with theories of tax competition, FDI, selectorate theory, and the relationship between governance and economic outcomes.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Essay</div>
+              <div class="course-paper-title">This Dictator Does</div>
+              <div class="course-paper-meta">2025–26 · Global Political Economy</div>
+              <p class="course-paper-abstract">Uses Singapore as a deviant case to challenge the claim that autocracies have no structural incentive to attract foreign capital via low tax rates, proposing a shift in unit of analysis from regime type to legitimacy source.</p>
+              <a href="../ThisDictatorDoes.pdf" target="_blank" rel="noopener" class="course-paper-link">Read paper ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Thematic Seminar: FDI, MNCs, Technology & Emerging Economies -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">11</div>
+            <div class="course-info">
+              <div class="course-code">Advanced Seminar · Political Economy · Year 2</div>
+              <h2 class="course-name">FDI, Multinational Corporations, Technology &amp; Emerging Economies</h2>
+              <p class="course-desc">A thematic seminar diving into foreign direct investment, multinational corporate behavior, and technological change's implications for emerging economies, featuring original empirical research with cross-national datasets. Students produce research papers engaging seriously with quantitative data alongside theoretical frameworks from Polanyi, Ruggie, and Genschel.</p>
+            </div>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card">
+              <div class="course-paper-type">Research Paper · 5,388 words</div>
+              <div class="course-paper-title">Institutional Attenuation</div>
+              <div class="course-paper-meta">2026 · Thematic Seminar</div>
+              <p class="course-paper-abstract">Introduces the concept of institutional attenuation: OLS regression across 59 democracies shows effective corporate tax rates rise by only 0.94 points per statutory point, with the gap growing significantly with country size (Spearman ρ = 0.370, p = 0.004).</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Honors Programme ── -->
+        <div class="course-year-header">
+          <span class="course-year-label">Honors Programme</span>
+        </div>
+
+        <!-- Francophone Cinema -->
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">★</div>
+            <div class="course-info">
+              <div class="course-code">Honors Course · Humanities</div>
+              <h2 class="course-name">Francophone Cinema and its Articulations</h2>
+              <p class="course-desc">An honors course examining Francophone cinema as a site of political and cultural articulation, analyzing how French-language film engages with questions of colonialism, violence, identity, and moral ambiguity. Students apply theoretical frameworks from political philosophy and cultural studies to close readings of key works.</p>
+            </div>
+            <span class="course-badge">Honors</span>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card honors-card">
+              <div class="honors-card-badge">★ Honors Assignment</div>
+              <div class="course-paper-title">Ethical Ambiguity in <em>The Battle of Algiers</em></div>
+              <div class="course-paper-meta">Francophone Cinema and its Articulations</div>
+              <p class="course-paper-abstract">Analyzed Pontecorvo's 1966 film through Arendt and Fanon, arguing it refuses to moralize by presenting colonial political violence as cyclical and dialectical, forcing viewers to hold moral complexity without resolution.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header">
+            <div class="course-num">★</div>
+            <div class="course-info">
+              <div class="course-code">Honors Track · Leiden University</div>
+              <h2 class="course-name">Honors Work</h2>
+              <p class="course-desc">The Honors track extends the standard degree with more specialised coursework and independent research across the full breadth of International Studies. The Thematic Seminar on FDI, MNCs, and Emerging Economies functions as the pre-thesis research course, producing the most substantial independent empirical work of the programme to date.</p>
+            </div>
+            <span class="course-badge">Honors</span>
+          </div>
+          <div class="course-papers">
+            <div class="course-paper-card honors-card">
+              <div class="honors-card-badge">★ Pre-Thesis Research</div>
+              <div class="course-paper-title">Institutional Attenuation</div>
+              <div class="course-paper-meta">2026 · 5,388 words · Thematic Seminar</div>
+              <p class="course-paper-abstract">Introduces the concept of institutional attenuation, demonstrating through OLS regression across 59 democracies that democratic tax systems structurally absorb a predictable fraction of every statutory rate increase before it becomes a realized corporate burden.</p>
+              <span class="course-paper-link course-paper-link--pending">PDF pending</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <span>© 2026 Harrison Velentzas</span>
+    <a href="/" class="footer-back">← Back to portfolio</a>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const navToggle = document.getElementById('navToggle');
+    const navRight  = document.getElementById('navRight');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      navRight.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+  <script data-goatcounter="https://havelentzas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
